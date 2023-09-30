@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcfexniqjbx2l"]
+
+[ext_resource type="Texture2D" uid="uid://p5e40m3soh7a" path="res://sprites/computer_os/start_button.png" id="1_l82vu"]
+[ext_resource type="Texture2D" uid="uid://btb1624f5ra4v" path="res://sprites/computer_os/install_apps_icon.png" id="3_5xc21"]
+[ext_resource type="Texture2D" uid="uid://11peciv7jbup" path="res://sprites/computer_os/start_bar.png" id="3_ca5rm"]
+[ext_resource type="Texture2D" uid="uid://cpa2khjy41y8q" path="res://sprites/computer_os/start_bar_right_border.png" id="3_eyntv"]
+[ext_resource type="Texture2D" uid="uid://stnv5ih4ckk6" path="res://sprites/computer_os/space_manager_icon.png" id="4_qte2b"]
+[ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="5_hkv4r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bgixu"]
+line_spacing = -2.0
+font = ExtResource("5_hkv4r")
+font_size = 8
+font_color = Color(0.752941, 0.72549, 0.713726, 1)
+outline_size = 1
+outline_color = Color(0.113725, 0.117647, 0.121569, 0)
+shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rjc7i"]
+line_spacing = -2.0
+font = ExtResource("5_hkv4r")
+font_size = 8
+font_color = Color(0.94902, 0.364706, 0.364706, 1)
+outline_size = 1
+outline_color = Color(0.113725, 0.117647, 0.121569, 0)
+shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
+shadow_offset = Vector2(0, 1)
+
+[node name="Root" type="Node2D"]
+texture_filter = 1
+
+[node name="BG" type="ColorRect" parent="."]
+z_index = -10
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0.9375, 0.945313, 0.910156, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 112)
+
+[node name="Desktop" type="Node2D" parent="."]
+
+[node name="Icons" type="Node2D" parent="Desktop"]
+
+[node name="DiskClean" type="Sprite2D" parent="Desktop/Icons"]
+position = Vector2(30, 34)
+texture = ExtResource("4_qte2b")
+
+[node name="Label" type="Label" parent="Desktop/Icons/DiskClean"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -20.0
+offset_right = -16.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "DISK
+CLEAN
+"
+label_settings = SubResource("LabelSettings_bgixu")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="InstallApps" type="Sprite2D" parent="Desktop/Icons"]
+position = Vector2(30, 94)
+texture = ExtResource("3_5xc21")
+
+[node name="Label" type="Label" parent="Desktop/Icons/InstallApps"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -20.0
+offset_right = -16.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "install
+apps"
+label_settings = SubResource("LabelSettings_bgixu")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="StartBar" type="Node2D" parent="Desktop"]
+position = Vector2(0, 200)
+
+[node name="StartButton" type="Sprite2D" parent="Desktop/StartBar"]
+z_index = 1
+position = Vector2(40, 12)
+texture = ExtResource("1_l82vu")
+
+[node name="StartBarApps" type="Sprite2D" parent="Desktop/StartBar"]
+position = Vector2(194, 12)
+scale = Vector2(62, 1)
+texture = ExtResource("3_ca5rm")
+
+[node name="StartBarRightBorder" type="Sprite2D" parent="Desktop/StartBar"]
+position = Vector2(252, 12)
+texture = ExtResource("3_eyntv")
+
+[node name="Label2" type="Label" parent="Desktop"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_right = 252.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Goal: install bolder's door 3"
+label_settings = SubResource("LabelSettings_rjc7i")
+horizontal_alignment = 2
+vertical_alignment = 1
