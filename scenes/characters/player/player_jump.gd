@@ -1,5 +1,9 @@
 extends Node
 
+class_name PlayerJump
+
+signal on_jump
+
 @export var body: CharacterBody2D
 @export var minJumpSpeed: float = 6000
 @export var jumpSpeed: float = 600
@@ -19,6 +23,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if _jump:
+		on_jump.emit()
 		_jump = false
 		_jumping = true
 		body.velocity.y = -minJumpSpeed * delta

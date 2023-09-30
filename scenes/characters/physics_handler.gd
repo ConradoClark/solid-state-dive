@@ -7,3 +7,4 @@ class_name PhysicsHandler
 
 func _physics_process(delta):
 	body.move_and_slide()
+	body.position = body.position.round()

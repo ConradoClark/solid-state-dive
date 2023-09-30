@@ -255,7 +255,7 @@ texture = ExtResource("3_eyntv")
 [node name="StartBarCollider" type="StaticBody2D" parent="Desktop/StartBar"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/StartBar/StartBarCollider"]
-position = Vector2(128, 12)
+position = Vector2(128, 11)
 shape = SubResource("RectangleShape2D_8di0w")
 
 [node name="Label2" type="Label" parent="Desktop"]
