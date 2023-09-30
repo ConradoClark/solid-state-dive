@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcfexniqjbx2l"]
+[gd_scene load_steps=21 format=3 uid="uid://d3myar4wu1e7i"]
 
+[ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_be1hv"]
 [ext_resource type="Texture2D" uid="uid://p5e40m3soh7a" path="res://sprites/computer_os/start_button.png" id="1_l82vu"]
 [ext_resource type="Script" path="res://scenes/computer_os/icon/selectable.gd" id="2_4jrvw"]
 [ext_resource type="Texture2D" uid="uid://btb1624f5ra4v" path="res://sprites/computer_os/install_apps_icon.png" id="3_5xc21"]
@@ -8,6 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://cgqrbgpn6cj1l" path="res://sprites/computer_os/my_drive.png" id="4_0uwg8"]
 [ext_resource type="Texture2D" uid="uid://stnv5ih4ckk6" path="res://sprites/computer_os/space_manager_icon.png" id="4_qte2b"]
 [ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="5_hkv4r"]
+[ext_resource type="Texture2D" uid="uid://b0c6ri6krmbkx" path="res://sprites/characters/main_character.png" id="9_bm72g"]
+[ext_resource type="Script" path="res://scenes/characters/gravity_handler.gd" id="10_02adk"]
+[ext_resource type="Script" path="res://scenes/characters/player/player_move.gd" id="10_isjw8"]
+[ext_resource type="Script" path="res://scenes/characters/player/player_jump.gd" id="11_tcb8l"]
+[ext_resource type="Script" path="res://scenes/characters/physics_handler.gd" id="12_sn47g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bgixu"]
 line_spacing = -2.0
@@ -25,6 +31,9 @@ size = Vector2(44, 52)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1smy"]
 size = Vector2(52, 52)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8di0w"]
+size = Vector2(320, 24)
+
 [sub_resource type="LabelSettings" id="LabelSettings_rjc7i"]
 line_spacing = -2.0
 font = ExtResource("5_hkv4r")
@@ -35,8 +44,16 @@ outline_color = Color(0.113725, 0.117647, 0.121569, 0)
 shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
 shadow_offset = Vector2(0, 1)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgfot"]
+radius = 4.0
+height = 14.0
+
 [node name="Root" type="Node2D"]
 texture_filter = 1
+
+[node name="Gravity" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_be1hv")
 
 [node name="BG" type="ColorRect" parent="."]
 z_index = -10
@@ -46,6 +63,7 @@ color = Color(0.9375, 0.945313, 0.910156, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(128, 112)
+process_callback = 0
 
 [node name="Desktop" type="Node2D" parent="."]
 
@@ -189,6 +207,12 @@ texture = ExtResource("3_ca5rm")
 position = Vector2(252, 12)
 texture = ExtResource("3_eyntv")
 
+[node name="StartBarCollider" type="StaticBody2D" parent="Desktop/StartBar"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/StartBar/StartBarCollider"]
+position = Vector2(128, 12)
+shape = SubResource("RectangleShape2D_8di0w")
+
 [node name="Label2" type="Label" parent="Desktop"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -202,3 +226,31 @@ text = "Goal: install bolder's door 3"
 label_settings = SubResource("LabelSettings_rjc7i")
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="Player" type="CharacterBody2D" parent="Desktop"]
+position = Vector2(104, 112)
+
+[node name="Abilities" type="Node2D" parent="Desktop/Player"]
+
+[node name="Move" type="Node2D" parent="Desktop/Player/Abilities" node_paths=PackedStringArray("body")]
+script = ExtResource("10_isjw8")
+body = NodePath("../..")
+speed = 100.0
+
+[node name="Jump" type="Node2D" parent="Desktop/Player/Abilities" node_paths=PackedStringArray("body")]
+script = ExtResource("11_tcb8l")
+body = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Player"]
+shape = SubResource("CapsuleShape2D_rgfot")
+
+[node name="Sprite2D" type="Sprite2D" parent="Desktop/Player"]
+texture = ExtResource("9_bm72g")
+
+[node name="GravityHandler" type="Node" parent="Desktop/Player" node_paths=PackedStringArray("body")]
+script = ExtResource("10_02adk")
+body = NodePath("..")
+
+[node name="PhysicsHandler" type="Node" parent="Desktop/Player" node_paths=PackedStringArray("body")]
+script = ExtResource("12_sn47g")
+body = NodePath("..")
