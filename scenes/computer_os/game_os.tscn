@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcfexniqjbx2l"]
+[gd_scene load_steps=13 format=3 uid="uid://dcfexniqjbx2l"]
 
 [ext_resource type="Texture2D" uid="uid://p5e40m3soh7a" path="res://sprites/computer_os/start_button.png" id="1_l82vu"]
+[ext_resource type="Script" path="res://scenes/computer_os/icon/selectable.gd" id="2_4jrvw"]
 [ext_resource type="Texture2D" uid="uid://btb1624f5ra4v" path="res://sprites/computer_os/install_apps_icon.png" id="3_5xc21"]
 [ext_resource type="Texture2D" uid="uid://11peciv7jbup" path="res://sprites/computer_os/start_bar.png" id="3_ca5rm"]
 [ext_resource type="Texture2D" uid="uid://cpa2khjy41y8q" path="res://sprites/computer_os/start_bar_right_border.png" id="3_eyntv"]
+[ext_resource type="Texture2D" uid="uid://cgqrbgpn6cj1l" path="res://sprites/computer_os/my_drive.png" id="4_0uwg8"]
 [ext_resource type="Texture2D" uid="uid://stnv5ih4ckk6" path="res://sprites/computer_os/space_manager_icon.png" id="4_qte2b"]
 [ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="5_hkv4r"]
 
@@ -16,6 +18,12 @@ outline_size = 1
 outline_color = Color(0.113725, 0.117647, 0.121569, 0)
 shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
 shadow_offset = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0k810"]
+size = Vector2(44, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1smy"]
+size = Vector2(52, 52)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rjc7i"]
 line_spacing = -2.0
@@ -47,6 +55,12 @@ position = Vector2(128, 112)
 position = Vector2(30, 34)
 texture = ExtResource("4_qte2b")
 
+[node name="Selectable" type="Node2D" parent="Desktop/Icons/DiskClean" node_paths=PackedStringArray("clickRegion", "selectionRect")]
+script = ExtResource("2_4jrvw")
+clickRegion = NodePath("../Area2D")
+selectionRect = NodePath("../SelectionRect")
+selectionColor = Color(0.698039, 0.811765, 0.513726, 0.313726)
+
 [node name="Label" type="Label" parent="Desktop/Icons/DiskClean"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,6 +77,20 @@ CLEAN
 label_settings = SubResource("LabelSettings_bgixu")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Area2D" type="Area2D" parent="Desktop/Icons/DiskClean"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Icons/DiskClean/Area2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_0k810")
+
+[node name="SelectionRect" type="ColorRect" parent="Desktop/Icons/DiskClean"]
+offset_left = -22.0
+offset_top = -18.0
+offset_right = 19.0
+offset_bottom = 34.0
+scale = Vector2(1.08, 1)
+color = Color(1, 1, 1, 0)
 
 [node name="InstallApps" type="Sprite2D" parent="Desktop/Icons"]
 position = Vector2(30, 94)
@@ -83,6 +111,66 @@ apps"
 label_settings = SubResource("LabelSettings_bgixu")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Selectable" type="Node2D" parent="Desktop/Icons/InstallApps" node_paths=PackedStringArray("clickRegion", "selectionRect")]
+script = ExtResource("2_4jrvw")
+clickRegion = NodePath("../Area2D")
+selectionRect = NodePath("../SelectionRect")
+selectionColor = Color(0.698039, 0.811765, 0.513726, 0.313726)
+
+[node name="Area2D" type="Area2D" parent="Desktop/Icons/InstallApps"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Icons/InstallApps/Area2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_q1smy")
+
+[node name="SelectionRect" type="ColorRect" parent="Desktop/Icons/InstallApps"]
+offset_left = -26.0
+offset_top = -18.0
+offset_right = 22.0
+offset_bottom = 34.0
+scale = Vector2(1.08, 1)
+color = Color(1, 1, 1, 0)
+
+[node name="MyDrive" type="Sprite2D" parent="Desktop/Icons"]
+position = Vector2(28, 156)
+texture = ExtResource("4_0uwg8")
+
+[node name="Label" type="Label" parent="Desktop/Icons/MyDrive"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -17.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "my
+apps"
+label_settings = SubResource("LabelSettings_bgixu")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Selectable" type="Node2D" parent="Desktop/Icons/MyDrive" node_paths=PackedStringArray("clickRegion", "selectionRect")]
+script = ExtResource("2_4jrvw")
+clickRegion = NodePath("../Area2D")
+selectionRect = NodePath("../SelectionRect")
+selectionColor = Color(0.698039, 0.811765, 0.513726, 0.313726)
+
+[node name="Area2D" type="Area2D" parent="Desktop/Icons/MyDrive"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Icons/MyDrive/Area2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_0k810")
+
+[node name="SelectionRect" type="ColorRect" parent="Desktop/Icons/MyDrive"]
+offset_left = -22.0
+offset_top = -18.0
+offset_right = 19.0
+offset_bottom = 34.0
+scale = Vector2(1.08, 1)
+color = Color(1, 1, 1, 0)
 
 [node name="StartBar" type="Node2D" parent="Desktop"]
 position = Vector2(0, 200)
