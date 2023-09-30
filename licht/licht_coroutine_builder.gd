@@ -28,7 +28,10 @@ func run(fn: Callable) -> LichtCoroutineBuilder:
 func runAsync(fn: Callable) -> LichtCoroutineBuilder:
 	coroutine.add(func(): await fn.call(coroutine.isInterrupted))
 	return self
-	
+
+func compose(fn: Callable) -> LichtCoroutineBuilder:
+	return fn.call(self)
+
 func breakIf(fn: Callable) -> LichtCoroutineBuilder:
 	coroutine.breakIf = fn
 	return self

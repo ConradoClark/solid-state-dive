@@ -1,8 +1,8 @@
 extends Node
 
 @export var body: CharacterBody2D
-@export var minJumpSpeed: float = 7000
-@export var jumpSpeed: float = 500
+@export var minJumpSpeed: float = 6000
+@export var jumpSpeed: float = 600
 @export var jumpHoldTimeSeconds: float = 0.2
 
 var _jump = false

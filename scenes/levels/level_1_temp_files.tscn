@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://btwififiw4u85"]
+
+[ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_2onc7"]
+[ext_resource type="PackedScene" uid="uid://pmns6w1smn1t" path="res://scenes/characters/player/player.tscn" id="2_jq2nq"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Gravity" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_2onc7")
+
+[node name="BG" type="ColorRect" parent="."]
+z_index = -10
+offset_right = 636.0
+offset_bottom = 224.0
+color = Color(0.9375, 0.945313, 0.910156, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 112)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_jq2nq")]

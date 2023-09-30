@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3myar4wu1e7i"]
+[gd_scene load_steps=20 format=3 uid="uid://d3myar4wu1e7i"]
 
 [ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_be1hv"]
 [ext_resource type="Texture2D" uid="uid://p5e40m3soh7a" path="res://sprites/computer_os/start_button.png" id="1_l82vu"]
@@ -8,12 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cpa2khjy41y8q" path="res://sprites/computer_os/start_bar_right_border.png" id="3_eyntv"]
 [ext_resource type="Texture2D" uid="uid://cgqrbgpn6cj1l" path="res://sprites/computer_os/my_drive.png" id="4_0uwg8"]
 [ext_resource type="Texture2D" uid="uid://stnv5ih4ckk6" path="res://sprites/computer_os/space_manager_icon.png" id="4_qte2b"]
+[ext_resource type="Script" path="res://scenes/computer_os/icon/dbl_click.gd" id="5_8e8ys"]
 [ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="5_hkv4r"]
-[ext_resource type="Texture2D" uid="uid://b0c6ri6krmbkx" path="res://sprites/characters/main_character.png" id="9_bm72g"]
-[ext_resource type="Script" path="res://scenes/characters/gravity_handler.gd" id="10_02adk"]
-[ext_resource type="Script" path="res://scenes/characters/player/player_move.gd" id="10_isjw8"]
-[ext_resource type="Script" path="res://scenes/characters/player/player_jump.gd" id="11_tcb8l"]
-[ext_resource type="Script" path="res://scenes/characters/physics_handler.gd" id="12_sn47g"]
+[ext_resource type="Script" path="res://scenes/computer_os/icon/open_window.gd" id="6_onwi2"]
+[ext_resource type="PackedScene" uid="uid://t6pdxvi4vjek" path="res://scenes/computer_os/window/clean_drive_window.tscn" id="8_84pjt"]
+[ext_resource type="PackedScene" uid="uid://pmns6w1smn1t" path="res://scenes/characters/player/player.tscn" id="14_j6cmt"]
+[ext_resource type="PackedScene" uid="uid://cqs2lri1kagqp" path="res://scenes/computer_os/window/open_win_effect.tscn" id="17_riojm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bgixu"]
 line_spacing = -2.0
@@ -44,10 +44,6 @@ outline_color = Color(0.113725, 0.117647, 0.121569, 0)
 shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
 shadow_offset = Vector2(0, 1)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgfot"]
-radius = 4.0
-height = 14.0
-
 [node name="Root" type="Node2D"]
 texture_filter = 1
 
@@ -73,12 +69,6 @@ process_callback = 0
 position = Vector2(30, 34)
 texture = ExtResource("4_qte2b")
 
-[node name="Selectable" type="Node2D" parent="Desktop/Icons/DiskClean" node_paths=PackedStringArray("clickRegion", "selectionRect")]
-script = ExtResource("2_4jrvw")
-clickRegion = NodePath("../Area2D")
-selectionRect = NodePath("../SelectionRect")
-selectionColor = Color(0.698039, 0.811765, 0.513726, 0.313726)
-
 [node name="Label" type="Label" parent="Desktop/Icons/DiskClean"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,19 +86,42 @@ label_settings = SubResource("LabelSettings_bgixu")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Area2D" type="Area2D" parent="Desktop/Icons/DiskClean"]
+[node name="ClickRegion" type="Area2D" parent="Desktop/Icons/DiskClean"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Icons/DiskClean/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Icons/DiskClean/ClickRegion"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_0k810")
 
-[node name="SelectionRect" type="ColorRect" parent="Desktop/Icons/DiskClean"]
+[node name="Selection" type="Node2D" parent="Desktop/Icons/DiskClean"]
+
+[node name="Selectable" type="Node2D" parent="Desktop/Icons/DiskClean/Selection" node_paths=PackedStringArray("clickRegion", "selectionRect")]
+script = ExtResource("2_4jrvw")
+clickRegion = NodePath("../../ClickRegion")
+selectionRect = NodePath("../SelectionRect")
+selectionColor = Color(0.698039, 0.811765, 0.513726, 0.313726)
+
+[node name="SelectionRect" type="ColorRect" parent="Desktop/Icons/DiskClean/Selection"]
 offset_left = -22.0
 offset_top = -18.0
 offset_right = 19.0
 offset_bottom = 34.0
 scale = Vector2(1.08, 1)
 color = Color(1, 1, 1, 0)
+
+[node name="DoubleClick" type="Node2D" parent="Desktop/Icons/DiskClean"]
+
+[node name="DoubleClickable" type="Node2D" parent="Desktop/Icons/DiskClean/DoubleClick" node_paths=PackedStringArray("clickRegion")]
+script = ExtResource("5_8e8ys")
+clickRegion = NodePath("../../ClickRegion")
+
+[node name="OpenWindow" type="Node2D" parent="Desktop/Icons/DiskClean"]
+script = ExtResource("6_onwi2")
+eventSource = NodePath("../DoubleClick/DoubleClickable")
+eventName = "on_dbl_click"
+openWindowEffect = ExtResource("17_riojm")
+window = ExtResource("8_84pjt")
+winOrigin = Vector2(30, 34)
+winDestination = Vector2(155, 100)
 
 [node name="InstallApps" type="Sprite2D" parent="Desktop/Icons"]
 position = Vector2(30, 94)
@@ -132,13 +145,13 @@ vertical_alignment = 2
 
 [node name="Selectable" type="Node2D" parent="Desktop/Icons/InstallApps" node_paths=PackedStringArray("clickRegion", "selectionRect")]
 script = ExtResource("2_4jrvw")
-clickRegion = NodePath("../Area2D")
+clickRegion = NodePath("../ClickRegion")
 selectionRect = NodePath("../SelectionRect")
 selectionColor = Color(0.698039, 0.811765, 0.513726, 0.313726)
 
-[node name="Area2D" type="Area2D" parent="Desktop/Icons/InstallApps"]
+[node name="ClickRegion" type="Area2D" parent="Desktop/Icons/InstallApps"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Icons/InstallApps/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Icons/InstallApps/ClickRegion"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_q1smy")
 
@@ -149,6 +162,22 @@ offset_right = 22.0
 offset_bottom = 34.0
 scale = Vector2(1.08, 1)
 color = Color(1, 1, 1, 0)
+
+[node name="DoubleClick" type="Node2D" parent="Desktop/Icons/InstallApps"]
+position = Vector2(0, -60)
+
+[node name="DoubleClickable" type="Node2D" parent="Desktop/Icons/InstallApps/DoubleClick" node_paths=PackedStringArray("clickRegion")]
+script = ExtResource("5_8e8ys")
+clickRegion = NodePath("../../ClickRegion")
+
+[node name="OpenWindow" type="Node2D" parent="Desktop/Icons/InstallApps"]
+position = Vector2(0, -60)
+script = ExtResource("6_onwi2")
+eventSource = NodePath("../DoubleClick/DoubleClickable")
+eventName = "on_dbl_click"
+openWindowEffect = ExtResource("17_riojm")
+winOrigin = Vector2(30, 94)
+winDestination = Vector2(155, 100)
 
 [node name="MyDrive" type="Sprite2D" parent="Desktop/Icons"]
 position = Vector2(28, 156)
@@ -172,13 +201,13 @@ vertical_alignment = 2
 
 [node name="Selectable" type="Node2D" parent="Desktop/Icons/MyDrive" node_paths=PackedStringArray("clickRegion", "selectionRect")]
 script = ExtResource("2_4jrvw")
-clickRegion = NodePath("../Area2D")
+clickRegion = NodePath("../ClickRegion")
 selectionRect = NodePath("../SelectionRect")
 selectionColor = Color(0.698039, 0.811765, 0.513726, 0.313726)
 
-[node name="Area2D" type="Area2D" parent="Desktop/Icons/MyDrive"]
+[node name="ClickRegion" type="Area2D" parent="Desktop/Icons/MyDrive"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Icons/MyDrive/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Icons/MyDrive/ClickRegion"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_0k810")
 
@@ -189,6 +218,22 @@ offset_right = 19.0
 offset_bottom = 34.0
 scale = Vector2(1.08, 1)
 color = Color(1, 1, 1, 0)
+
+[node name="DoubleClick" type="Node2D" parent="Desktop/Icons/MyDrive"]
+position = Vector2(0, -60)
+
+[node name="DoubleClickable" type="Node2D" parent="Desktop/Icons/MyDrive/DoubleClick" node_paths=PackedStringArray("clickRegion")]
+script = ExtResource("5_8e8ys")
+clickRegion = NodePath("../../ClickRegion")
+
+[node name="OpenWindow" type="Node2D" parent="Desktop/Icons/MyDrive"]
+position = Vector2(0, -60)
+script = ExtResource("6_onwi2")
+eventSource = NodePath("../DoubleClick/DoubleClickable")
+eventName = "on_dbl_click"
+openWindowEffect = ExtResource("17_riojm")
+winOrigin = Vector2(30, 154)
+winDestination = Vector2(155, 100)
 
 [node name="StartBar" type="Node2D" parent="Desktop"]
 position = Vector2(0, 200)
@@ -227,30 +272,4 @@ label_settings = SubResource("LabelSettings_rjc7i")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Player" type="CharacterBody2D" parent="Desktop"]
-position = Vector2(104, 112)
-
-[node name="Abilities" type="Node2D" parent="Desktop/Player"]
-
-[node name="Move" type="Node2D" parent="Desktop/Player/Abilities" node_paths=PackedStringArray("body")]
-script = ExtResource("10_isjw8")
-body = NodePath("../..")
-speed = 100.0
-
-[node name="Jump" type="Node2D" parent="Desktop/Player/Abilities" node_paths=PackedStringArray("body")]
-script = ExtResource("11_tcb8l")
-body = NodePath("../..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Player"]
-shape = SubResource("CapsuleShape2D_rgfot")
-
-[node name="Sprite2D" type="Sprite2D" parent="Desktop/Player"]
-texture = ExtResource("9_bm72g")
-
-[node name="GravityHandler" type="Node" parent="Desktop/Player" node_paths=PackedStringArray("body")]
-script = ExtResource("10_02adk")
-body = NodePath("..")
-
-[node name="PhysicsHandler" type="Node" parent="Desktop/Player" node_paths=PackedStringArray("body")]
-script = ExtResource("12_sn47g")
-body = NodePath("..")
+[node name="Player" parent="Desktop" instance=ExtResource("14_j6cmt")]

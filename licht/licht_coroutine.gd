@@ -23,6 +23,18 @@ func run(breakFn=null):
 			return
 		await action.call()
 
+func runReverse(breakFn=null):
+	var reversedDef = coroutineDef.duplicate()
+	reversedDef.reverse()
+	if (breakFn): runBreakIf = breakFn
+	running = true
+	interrupted = false
+	check()
+	for action in reversedDef:
+		if (interrupted):
+			return
+		await action.call()
+
 func check():
 	while(running && !interrupted):
 		if ((breakIf && breakIf.call()) || (runBreakIf && runBreakIf.call())) :

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqs2lri1kagqp"]
+
+[ext_resource type="Script" path="res://scenes/computer_os/window/open_win_effect.gd" id="1_xpnhy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcrgv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="WinEffectRoot" type="Node2D" node_paths=PackedStringArray("panel")]
+script = ExtResource("1_xpnhy")
+initialColor = Color(0.859375, 0.84375, 0.800781, 1)
+middleColor = Color(0.753906, 0.726563, 0.714844, 1)
+endColor = Color(0.113281, 0.117188, 0.121094, 1)
+panel = NodePath("OpenWinEffect")
+
+[node name="OpenWinEffect" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dcrgv")
