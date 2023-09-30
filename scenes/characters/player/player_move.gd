@@ -31,7 +31,6 @@ func _physics_process(delta):
 		var wasZero = is_zero_approx(_previousSpeed)
 		body.velocity.x = lerp(body.velocity.x, 0.0, friction if body.is_on_floor() else airFriction)
 		if is_zero_approx(body.velocity.x) and !wasZero: 
-			print('stopped')
 			on_stop_move.emit()
 			body.velocity.x = 0
 	_previousSpeed = body.velocity.x

@@ -1,5 +1,7 @@
 extends Node
 
+class_name OpenWindow
+
 @export var eventSource: NodePath
 @export var eventName: String
 @export var openWindowEffect: PackedScene
@@ -15,19 +17,19 @@ var _win: OSWindow
 
 func _ready():
 	var node = get_node(eventSource)
-	node[eventName].connect(_open_window)
+	node[eventName].connect(open_window)
 	Signals.window_opened.connect(_on_opened_window)
 	Signals.close_window_pressed.connect(_on_window_closed)
 	
 func _on_window_closed(winInstance):
 	if winInstance != _win: return
-	_close_window()
+	close_window()
 
 func _on_opened_window(win):
 	if win == self: return
-	_close_window()
+	close_window()
 
-func _open_window():
+func open_window():
 	if _isOpen: return
 	_isOpen = true
 	Signals.window_opened.emit(self)
@@ -37,10 +39,11 @@ func _open_window():
 func _instantiate_window():
 	if !window: return
 	_win = window.instantiate() as OSWindow
+	_win.opener = self
 	get_tree().root.add_child(_win)
 	_win.position = winDestination - _win.window_size / 2
 
-func _close_window():
+func close_window():
 	if !_isOpen: return
 	_isOpen = false
 	if _win: _win.queue_free()

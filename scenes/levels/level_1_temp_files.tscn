@@ -11,7 +11,7 @@ texture = ExtResource("3_76awm")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.625, 8, -5.625, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -7, 8, -7.125, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_tmrqd"]
 physics_layer_0/collision_layer = 1
@@ -36,12 +36,6 @@ offset_right = 636.0
 offset_bottom = 224.0
 color = Color(0.9375, 0.945313, 0.910156, 1)
 
-[node name="Player" parent="." instance=ExtResource("2_jq2nq")]
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-position = Vector2(0, -70)
-remote_path = NodePath("../../Camera2D")
-
 [node name="LevelLayout" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="LevelLayout"]
@@ -55,8 +49,15 @@ layer_0/tile_data = PackedInt32Array(851968, 1, 0, 851983, 1, 0, 851982, 1, 0, 8
 position = Vector2(-12, 81)
 shape = SubResource("RectangleShape2D_g1mnj")
 
+[node name="Player" parent="." instance=ExtResource("2_jq2nq")]
+position = Vector2(20, 204)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+position = Vector2(0, -70)
+remote_path = NodePath("../../Camera2D")
+
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(104, 42)
+position = Vector2(20, 134)
 limit_left = 0
 limit_smoothed = true
 position_smoothing_speed = 10.0

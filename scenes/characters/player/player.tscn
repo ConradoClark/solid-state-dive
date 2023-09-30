@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://pmns6w1smn1t"]
+[gd_scene load_steps=18 format=3 uid="uid://pmns6w1smn1t"]
 
 [ext_resource type="Script" path="res://scenes/characters/player/player_move.gd" id="1_v503n"]
 [ext_resource type="Script" path="res://scenes/characters/player/player_jump.gd" id="2_72his"]
@@ -7,10 +7,18 @@
 [ext_resource type="Script" path="res://scenes/characters/physics_handler.gd" id="5_octx4"]
 [ext_resource type="Material" uid="uid://c71ngtclqqpts" path="res://materials/outlined_object.tres" id="5_w4kos"]
 [ext_resource type="Script" path="res://scenes/characters/player/player_animator.gd" id="7_eqooe"]
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="7_wm5fh"]
+[ext_resource type="Texture2D" uid="uid://ca70xu6663f84" path="res://sprites/characters/main_arm.png" id="8_tigoj"]
+[ext_resource type="Script" path="res://scenes/characters/player/player_guide_arm.gd" id="10_gjrer"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgfot"]
 radius = 4.0
 height = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_10wm4"]
+shader = ExtResource("7_wm5fh")
+shader_parameter/line_color = Color(0.94902, 0.364706, 0.364706, 1)
+shader_parameter/line_thickness = 1.0
 
 [sub_resource type="Animation" id="Animation_whhw4"]
 resource_name = "idle"
@@ -19,7 +27,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/path = NodePath("Visuals/MainSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,7 +44,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/path = NodePath("Visuals/MainSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -52,7 +60,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/path = NodePath("Visuals/MainSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -69,7 +77,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sprite2D:frame")
+tracks/0/path = NodePath("Visuals/MainSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -113,12 +121,18 @@ body = NodePath("..")
 
 [node name="Visuals" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+[node name="MainSprite" type="Sprite2D" parent="Visuals"]
 material = ExtResource("5_w4kos")
 texture = ExtResource("3_g8fjj")
 hframes = 4
 vframes = 4
 frame = 11
+
+[node name="ArmSprite" type="Sprite2D" parent="Visuals"]
+material = SubResource("ShaderMaterial_10wm4")
+texture = ExtResource("8_tigoj")
+centered = false
+offset = Vector2(-2.5, -8)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" node_paths=PackedStringArray("playerSprite", "playerBody", "playerMove", "playerJump")]
 root_node = NodePath("../..")
@@ -126,7 +140,12 @@ libraries = {
 "": SubResource("AnimationLibrary_hpitf")
 }
 script = ExtResource("7_eqooe")
-playerSprite = NodePath("../Sprite2D")
+playerSprite = NodePath("../MainSprite")
 playerBody = NodePath("../..")
 playerMove = NodePath("../../Abilities/Move")
 playerJump = NodePath("../../Abilities/Jump")
+
+[node name="GuideArm" type="Node2D" parent="Visuals" node_paths=PackedStringArray("playerArm")]
+position = Vector2(4, 0)
+script = ExtResource("10_gjrer")
+playerArm = NodePath("../ArmSprite")
