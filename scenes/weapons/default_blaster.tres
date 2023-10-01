@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://d2xgwhe6qqucm"]
+
+[ext_resource type="PackedScene" uid="uid://diyq7iy5q6g58" path="res://scenes/bullets/default_blaster.tscn" id="1_5lsam"]
+[ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="1_hj6jj"]
+
+[resource]
+script = ExtResource("1_hj6jj")
+cooldownInMs = 75.0
+projectile = ExtResource("1_5lsam")
+positionVariance = 5.0

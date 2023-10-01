@@ -1,0 +1,108 @@
+[gd_scene load_steps=17 format=3 uid="uid://byst2iv5egffo"]
+
+[ext_resource type="Script" path="res://scenes/effects/one_shot_anim.gd" id="1_g8g2r"]
+[ext_resource type="Texture2D" uid="uid://qvbdild771dl" path="res://sprites/effects/blast_impact_22x24.png" id="1_jcys8"]
+[ext_resource type="Script" path="res://scenes/effects/random_rotation.gd" id="3_8ckmy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rayc"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(0, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngwrr"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(22, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onyyx"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(44, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q20r"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(66, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah0cn"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(0, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtobe"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(22, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xscvn"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(44, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4dmu"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(66, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wubi"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(0, 48, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_573xn"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(22, 48, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vtio"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(44, 48, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0dtd"]
+atlas = ExtResource("1_jcys8")
+region = Rect2(66, 48, 22, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqr3q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rayc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngwrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onyyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q20r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah0cn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtobe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xscvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4dmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wubi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_573xn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vtio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0dtd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BlastImpact" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_dqr3q")
+autoplay = "default"
+frame_progress = 0.0223354
+speed_scale = 5.0
+script = ExtResource("1_g8g2r")
+
+[node name="RandomRotation" type="Node2D" parent="." node_paths=PackedStringArray("reference")]
+script = ExtResource("3_8ckmy")
+reference = NodePath("..")

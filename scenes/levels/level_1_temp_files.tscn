@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://btwififiw4u85"]
+[gd_scene load_steps=9 format=3 uid="uid://btwififiw4u85"]
 
 [ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_2onc7"]
+[ext_resource type="Script" path="res://scenes/core/enable_player_shoot.gd" id="2_7oaj8"]
 [ext_resource type="PackedScene" uid="uid://pmns6w1smn1t" path="res://scenes/characters/player/player.tscn" id="2_jq2nq"]
 [ext_resource type="Texture2D" uid="uid://c71w4n5biiuxj" path="res://sprites/levels/ground1.png" id="3_76awm"]
 
@@ -25,9 +26,13 @@ size = Vector2(20, 286)
 texture_filter = 1
 texture_repeat = 2
 
-[node name="Gravity" type="Node" parent="."]
-unique_name_in_owner = true
+[node name="Behaviors" type="Node2D" parent="."]
+
+[node name="Gravity" type="Node" parent="Behaviors"]
 script = ExtResource("1_2onc7")
+
+[node name="EnablePlayerShoot" type="Node2D" parent="Behaviors"]
+script = ExtResource("2_7oaj8")
 
 [node name="BG" type="ColorRect" parent="."]
 z_index = -10
