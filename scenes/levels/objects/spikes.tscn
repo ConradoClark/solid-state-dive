@@ -1,17 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1ifeeaockk03"]
+[gd_scene load_steps=5 format=3 uid="uid://c1ifeeaockk03"]
 
 [ext_resource type="Texture2D" uid="uid://dcxojhyt172a2" path="res://sprites/levels/objects/spikes.png" id="1_7ifx3"]
+[ext_resource type="Script" path="res://scenes/levels/objects/damage_on_contact.gd" id="2_aqhn3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ulto"]
 size = Vector2(16, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46prf"]
+size = Vector2(8, 4)
 
 [node name="spikes" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 6)
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_8ulto")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7ifx3")
+
+[node name="DamageOnContact" type="Node" parent="." node_paths=PackedStringArray("region")]
+script = ExtResource("2_aqhn3")
+region = NodePath("../Area2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_46prf")

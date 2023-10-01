@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=3 uid="uid://ccclufqa41uwt"]
+
+[ext_resource type="Shader" uid="uid://dg1w58q22d002" path="res://shaders/blink_shader.tres" id="1_w3xgp"]
+[ext_resource type="Texture2D" uid="uid://c3mef2bqvkr7s" path="res://sprites/levels/objects/eof.png" id="2_3le2p"]
+[ext_resource type="Script" path="res://scenes/effects/tint_flash.gd" id="3_6voiy"]
+[ext_resource type="Script" path="res://scenes/levels/objects/flash_on_impact.gd" id="4_u25w1"]
+[ext_resource type="Script" path="res://scenes/levels/objects/damage_on_impact.gd" id="5_gnk4i"]
+[ext_resource type="Script" path="res://scenes/levels/damageable.gd" id="6_vtjjs"]
+[ext_resource type="Script" path="res://scenes/levels/objects/shake_screen_on_death.gd" id="7_4w7a3"]
+[ext_resource type="Script" path="res://scenes/levels/objects/destroy_on_death.gd" id="8_k3d7v"]
+[ext_resource type="Script" path="res://scenes/levels/objects/change_scene_on_death.gd" id="9_d0a2c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_22gnf"]
+shader = ExtResource("1_w3xgp")
+shader_parameter/Flash = Color(0, 0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0oxj"]
+size = Vector2(16, 32)
+
+[node name="eof" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_22gnf")
+texture = ExtResource("2_3le2p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f0oxj")
+
+[node name="TintFlash" type="Node" parent="." node_paths=PackedStringArray("object")]
+script = ExtResource("3_6voiy")
+object = NodePath("../Sprite2D")
+
+[node name="FlashOnImpact" type="Node2D" parent="." node_paths=PackedStringArray("collisionSource", "effect")]
+script = ExtResource("4_u25w1")
+collisionSource = NodePath("..")
+flashColor = Color(1, 1, 1, 1)
+seconds = 0.15
+effect = NodePath("../TintFlash")
+
+[node name="DamageOnImpact" type="Node2D" parent="." node_paths=PackedStringArray("collisionSource", "damageable")]
+script = ExtResource("5_gnk4i")
+collisionSource = NodePath("..")
+damageable = NodePath("../Damageable")
+
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("6_vtjjs")
+target = NodePath("..")
+health = 30
+
+[node name="ScreenShakeOnDeath" type="Node" parent="." node_paths=PackedStringArray("damageable")]
+script = ExtResource("7_4w7a3")
+damageable = NodePath("../Damageable")
+amount = 7.0
+duration = 2.0
+
+[node name="DestroyOnDeath" type="Node" parent="." node_paths=PackedStringArray("target", "damageable")]
+script = ExtResource("8_k3d7v")
+target = NodePath("..")
+damageable = NodePath("../Damageable")
+
+[node name="ChangeSceneOnDeath" type="Node" parent="." node_paths=PackedStringArray("damageable")]
+script = ExtResource("9_d0a2c")
+damageable = NodePath("../Damageable")
+scene = "res://scenes/computer_os/level_complete.tscn"

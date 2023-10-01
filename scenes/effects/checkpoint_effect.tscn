@@ -1,0 +1,108 @@
+[gd_scene load_steps=17 format=3 uid="uid://bsjhcn675etcv"]
+
+[ext_resource type="Texture2D" uid="uid://qvbdild771dl" path="res://sprites/effects/blast_impact_22x24.png" id="1_5o4ha"]
+[ext_resource type="Script" path="res://scenes/effects/one_shot_anim.gd" id="2_yet6u"]
+[ext_resource type="Script" path="res://scenes/effects/random_rotation.gd" id="3_xonof"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dksy6"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(0, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st1q1"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(22, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmp2t"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(44, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb0r8"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(66, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7s64"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(0, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv1m5"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(22, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs24m"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(44, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fhnh"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(66, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xeqo"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(0, 48, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8ik5"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(22, 48, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kphe"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(44, 48, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2bpi"]
+atlas = ExtResource("1_5o4ha")
+region = Rect2(66, 48, 22, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_em16l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dksy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st1q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmp2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb0r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7s64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pv1m5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs24m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fhnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xeqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8ik5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kphe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2bpi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CheckpointEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_em16l")
+autoplay = "default"
+frame_progress = 0.638887
+speed_scale = 5.0
+script = ExtResource("2_yet6u")
+
+[node name="RandomRotation" type="Node2D" parent="." node_paths=PackedStringArray("reference")]
+script = ExtResource("3_xonof")
+reference = NodePath("..")

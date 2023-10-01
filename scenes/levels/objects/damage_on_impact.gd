@@ -10,6 +10,9 @@ func _ready():
 
 func _damage_on_hit(object: Node2D, source: Projectile):
 	if collisionSource != object: return 
+	if !source: 
+		damageable.damage(1)
+		return
 	var projectile = source as Projectile
 	damageable.damage(source.damage)
  

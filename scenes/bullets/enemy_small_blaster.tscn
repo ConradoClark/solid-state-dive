@@ -1,0 +1,164 @@
+[gd_scene load_steps=28 format=3 uid="uid://bkq5a32y28ij2"]
+
+[ext_resource type="Script" path="res://scenes/bullets/projectile.gd" id="1_g46ww"]
+[ext_resource type="Texture2D" uid="uid://qvbdild771dl" path="res://sprites/effects/blast_impact_22x24.png" id="2_gx0ja"]
+[ext_resource type="Script" path="res://scenes/effects/one_shot_anim.gd" id="3_5kuok"]
+[ext_resource type="Script" path="res://scenes/effects/random_rotation.gd" id="4_ve435"]
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="5_4ywm2"]
+[ext_resource type="Texture2D" uid="uid://cx6h1sn23vexi" path="res://sprites/characters/small_gun.png" id="6_2udvr"]
+[ext_resource type="Script" path="res://scenes/bullets/linear_movement.gd" id="7_yvwy4"]
+[ext_resource type="Script" path="res://scenes/bullets/expire_on_leaving_camera.gd" id="8_hwrnk"]
+[ext_resource type="Script" path="res://scenes/characters/physics_handler.gd" id="9_pcmk7"]
+[ext_resource type="Script" path="res://scenes/bullets/effect_on_impact.gd" id="10_6n20q"]
+[ext_resource type="Script" path="res://scenes/bullets/signal_on_impact.gd" id="11_o7fel"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rayc"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(0, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngwrr"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(22, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onyyx"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(44, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q20r"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(66, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah0cn"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(0, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtobe"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(22, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xscvn"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(44, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4dmu"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(66, 24, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wubi"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(0, 48, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_573xn"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(22, 48, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vtio"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(44, 48, 22, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0dtd"]
+atlas = ExtResource("2_gx0ja")
+region = Rect2(66, 48, 22, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqr3q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rayc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngwrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onyyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q20r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah0cn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtobe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xscvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4dmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wubi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_573xn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vtio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0dtd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="PackedScene" id="PackedScene_d26lv"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("BlastImpact", "AnimatedSprite2D", "sprite_frames", "autoplay", "frame_progress", "speed_scale", "script", "RandomRotation", "Node2D", "script", "reference"),
+"node_count": 2,
+"node_paths": [NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 5, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 0, 1073741824, 0, 8, 7, -1, 2, 9, 5, 1073741834, 6, 0),
+"variants": [SubResource("SpriteFrames_dqr3q"), "default", 0.765543, 5.0, ExtResource("3_5kuok"), ExtResource("4_ve435"), NodePath("..")],
+"version": 3
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bhkv1"]
+shader = ExtResource("5_4ywm2")
+shader_parameter/line_color = Color(0.94902, 0.364706, 0.364706, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6pv7"]
+size = Vector2(6, 5)
+
+[node name="EnemySmallBlaster" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 17
+script = ExtResource("1_g46ww")
+speed = 50.0
+impactEffect = SubResource("PackedScene_d26lv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bhkv1")
+texture = ExtResource("6_2udvr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_i6pv7")
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("projectile")]
+script = ExtResource("7_yvwy4")
+projectile = NodePath("..")
+
+[node name="ExpireOnLeaving" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("8_hwrnk")
+body = NodePath("..")
+
+[node name="PhysicsHandler" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("9_pcmk7")
+body = NodePath("..")
+moveAndCollide = true
+
+[node name="EffectOnImpact" type="Node" parent="." node_paths=PackedStringArray("projectile", "physicsHandler")]
+script = ExtResource("10_6n20q")
+projectile = NodePath("..")
+physicsHandler = NodePath("../PhysicsHandler")
+
+[node name="SignalOnImpact" type="Node" parent="." node_paths=PackedStringArray("projectile", "physicsHandler")]
+script = ExtResource("11_o7fel")
+projectile = NodePath("..")
+physicsHandler = NodePath("../PhysicsHandler")

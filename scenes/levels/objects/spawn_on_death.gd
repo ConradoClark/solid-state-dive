@@ -14,3 +14,4 @@ func _on_death():
 	Globals.sceneExclusives.push_back(obj)
 	get_tree().root.add_child(obj)
 	obj.global_position = target.global_position
+	obj.rotation_degrees = target.rotation_degrees

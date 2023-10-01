@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d3arjju6qchwh"]
+
+[node name="level_complete" type="Node2D"]
+
+[node name="BG" type="ColorRect" parent="."]
+z_index = -10
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0.9375, 0.945313, 0.910156, 1)

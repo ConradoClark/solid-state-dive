@@ -307,7 +307,7 @@ damageable = NodePath("../Damageable")
 [node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("5_5l15w")
 target = NodePath("..")
-health = 15
+health = 10
 
 [node name="SpawnOnDeath" type="Node" parent="." node_paths=PackedStringArray("target", "damageable")]
 script = ExtResource("6_p5xal")

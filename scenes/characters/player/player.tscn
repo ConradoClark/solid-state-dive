@@ -1,12 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://pmns6w1smn1t"]
+[gd_scene load_steps=22 format=3 uid="uid://pmns6w1smn1t"]
 
 [ext_resource type="Script" path="res://scenes/characters/player/player_move.gd" id="1_v503n"]
 [ext_resource type="Script" path="res://scenes/characters/player/player_jump.gd" id="2_72his"]
 [ext_resource type="Script" path="res://scenes/characters/player/player_shoot.gd" id="3_fr83i"]
 [ext_resource type="Texture2D" uid="uid://b0c6ri6krmbkx" path="res://sprites/characters/main_character.png" id="3_g8fjj"]
 [ext_resource type="Script" path="res://scenes/characters/gravity_handler.gd" id="4_xoebq"]
+[ext_resource type="Script" path="res://scenes/levels/damageable.gd" id="5_jhin3"]
 [ext_resource type="Script" path="res://scenes/characters/physics_handler.gd" id="5_octx4"]
 [ext_resource type="Material" uid="uid://c71ngtclqqpts" path="res://materials/outlined_object.tres" id="5_w4kos"]
+[ext_resource type="Script" path="res://scenes/characters/player/player_respawn.gd" id="6_h5yg8"]
+[ext_resource type="Script" path="res://scenes/levels/objects/damage_on_impact.gd" id="7_coqtq"]
 [ext_resource type="Script" path="res://scenes/characters/player/player_animator.gd" id="7_eqooe"]
 [ext_resource type="Shader" path="res://shaders/outline.gdshader" id="7_wm5fh"]
 [ext_resource type="Texture2D" uid="uid://ca70xu6663f84" path="res://sprites/characters/main_arm.png" id="8_tigoj"]
@@ -99,6 +102,7 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(104, 112)
 collision_layer = 16
+collision_mask = 33
 
 [node name="Abilities" type="Node2D" parent="."]
 
@@ -119,6 +123,21 @@ body = NodePath("../..")
 script = ExtResource("3_fr83i")
 playerBody = NodePath("../..")
 guideArm = NodePath("../GuideArm")
+
+[node name="Damageable" type="Node" parent="Abilities" node_paths=PackedStringArray("target")]
+script = ExtResource("5_jhin3")
+target = NodePath("../..")
+health = 1
+
+[node name="PlayerRespawn" type="Node" parent="Abilities" node_paths=PackedStringArray("target", "damageable")]
+script = ExtResource("6_h5yg8")
+target = NodePath("../..")
+damageable = NodePath("../Damageable")
+
+[node name="DamageOnImpact" type="Node2D" parent="Abilities" node_paths=PackedStringArray("collisionSource", "damageable")]
+script = ExtResource("7_coqtq")
+collisionSource = NodePath("../..")
+damageable = NodePath("../Damageable")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rgfot")

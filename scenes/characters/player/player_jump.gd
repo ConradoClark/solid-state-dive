@@ -5,8 +5,8 @@ class_name PlayerJump
 signal on_jump
 
 @export var body: CharacterBody2D
-@export var minJumpSpeed: float = 6000
-@export var jumpSpeed: float = 600
+@export var minJumpSpeed: float = 5000
+@export var jumpSpeed: float = 700
 @export var jumpHoldTimeSeconds: float = 0.2
 
 var _jump = false

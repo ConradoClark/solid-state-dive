@@ -20,7 +20,7 @@ size = Vector2(6, 5)
 
 [node name="DefaultBlaster" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_bl1qx")
 speed = 200.0
 impactEffect = ExtResource("2_x6wsv")
