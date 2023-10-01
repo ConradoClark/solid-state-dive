@@ -1,4 +1,62 @@
-[gd_scene format=3 uid="uid://d3arjju6qchwh"]
+[gd_scene load_steps=15 format=3 uid="uid://d3arjju6qchwh"]
+
+[ext_resource type="PackedScene" uid="uid://b4gwnjolf55or" path="res://scenes/effects/transition_pixelate.tscn" id="1_bhpg7"]
+[ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="1_vm7ll"]
+[ext_resource type="Script" path="res://scenes/computer_os/icon/hover_color.gd" id="3_73mkd"]
+[ext_resource type="Script" path="res://scenes/computer_os/clickable.gd" id="4_rlj2l"]
+[ext_resource type="Script" path="res://scenes/computer_os/buttons/load_scene_on_click.gd" id="5_8xkcf"]
+[ext_resource type="Script" path="res://scenes/computer_os/level_complete_message.gd" id="6_y60lh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6yfj"]
+font = ExtResource("1_vm7ll")
+font_color = Color(0.113725, 0.117647, 0.121569, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ylygm"]
+font = ExtResource("1_vm7ll")
+font_size = 8
+font_color = Color(0.756863, 0.729412, 0.717647, 1)
+outline_color = Color(0.113281, 0.117188, 0.121094, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8sywa"]
+font = ExtResource("1_vm7ll")
+font_size = 8
+font_color = Color(0.113281, 0.117188, 0.121094, 1)
+outline_color = Color(0.113281, 0.117188, 0.121094, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p7c8p"]
+font = ExtResource("1_vm7ll")
+font_size = 8
+font_color = Color(0.698039, 0.811765, 0.513726, 1)
+outline_size = 2
+outline_color = Color(0.113281, 0.117188, 0.121094, 1)
+shadow_size = 2
+shadow_color = Color(0.113281, 0.117188, 0.121094, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6y0hp"]
+bg_color = Color(0.859375, 0.84375, 0.800781, 1)
+border_width_bottom = 2
+border_color = Color(0.75, 0.722656, 0.710938, 1)
+shadow_color = Color(0.992188, 0.992188, 0.992188, 1)
+shadow_offset = Vector2(0, -1)
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ocjg"]
+font = ExtResource("1_vm7ll")
+font_size = 8
+font_color = Color(0.113281, 0.117188, 0.121094, 1)
+outline_size = 3
+shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51hux"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.996094, 0.996094, 0.996094, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7bj6"]
+size = Vector2(124, 20)
 
 [node name="level_complete" type="Node2D"]
 
@@ -7,3 +65,99 @@ z_index = -10
 offset_right = 256.0
 offset_bottom = 224.0
 color = Color(0.9375, 0.945313, 0.910156, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_top = 8.0
+offset_right = 256.0
+offset_bottom = 33.0
+text = "FILES DELETED"
+label_settings = SubResource("LabelSettings_g6yfj")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_top = 32.0
+offset_right = 256.0
+offset_bottom = 57.0
+text = "state is not so solid anymore heh"
+label_settings = SubResource("LabelSettings_ylygm")
+horizontal_alignment = 1
+
+[node name="Saved" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 213.0
+offset_bottom = 89.0
+text = "YOU SAVED:"
+label_settings = SubResource("LabelSettings_8sywa")
+
+[node name="SavedAmount" type="Label" parent="."]
+offset_left = 44.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 89.0
+text = "10 MB"
+label_settings = SubResource("LabelSettings_p7c8p")
+horizontal_alignment = 2
+
+[node name="Text" type="Label" parent="."]
+offset_left = 44.0
+offset_top = 84.0
+offset_right = 213.0
+offset_bottom = 160.0
+text = "text about the level"
+label_settings = SubResource("LabelSettings_8sywa")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Transition" parent="." instance=ExtResource("1_bhpg7")]
+animateAtStart = true
+
+[node name="TempFilesButton" type="Panel" parent="."]
+offset_left = 68.0
+offset_top = 168.0
+offset_right = 192.0
+offset_bottom = 188.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6y0hp")
+
+[node name="Label" type="Label" parent="TempFilesButton"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 148.0
+offset_bottom = 27.0
+text = "Go back to system"
+label_settings = SubResource("LabelSettings_4ocjg")
+
+[node name="Border" type="Panel" parent="TempFilesButton"]
+layout_mode = 0
+offset_right = 124.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_51hux")
+
+[node name="Hover" type="Node2D" parent="TempFilesButton" node_paths=PackedStringArray("panel", "hoverRegion")]
+script = ExtResource("3_73mkd")
+hoverColor = Color(0.87451, 0.729412, 0.717647, 1)
+panel = NodePath("..")
+hoverRegion = NodePath("../Area2D")
+
+[node name="Area2D" type="Area2D" parent="TempFilesButton"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TempFilesButton/Area2D"]
+position = Vector2(62, 10)
+shape = SubResource("RectangleShape2D_j7bj6")
+
+[node name="Clickable" type="Node" parent="TempFilesButton" node_paths=PackedStringArray("clickRegion")]
+script = ExtResource("4_rlj2l")
+clickRegion = NodePath("../Area2D")
+
+[node name="GoToGameOS" type="Node2D" parent="TempFilesButton" node_paths=PackedStringArray("clickable")]
+position = Vector2(-8, -20)
+script = ExtResource("5_8xkcf")
+clickable = NodePath("../Clickable")
+sceneToLoad = "res://scenes/computer_os/game_os.tscn"
+
+[node name="LevelCompleteMessage" type="Node" parent="." node_paths=PackedStringArray("saved", "text")]
+script = ExtResource("6_y60lh")
+saved = NodePath("../SavedAmount")
+text = NodePath("../Text")

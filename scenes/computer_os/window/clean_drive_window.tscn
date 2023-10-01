@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://t6pdxvi4vjek"]
+[gd_scene load_steps=16 format=3 uid="uid://t6pdxvi4vjek"]
 
 [ext_resource type="Script" path="res://scenes/computer_os/window/os_window.gd" id="1_k4gm7"]
 [ext_resource type="Texture2D" uid="uid://c2qdxlq1lvsyd" path="res://sprites/computer_os/window/close_window_icon.png" id="2_k7ces"]
@@ -37,6 +37,12 @@ font_size = 8
 font_color = Color(0.113281, 0.117188, 0.121094, 1)
 outline_size = 3
 shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ura6v"]
+font = ExtResource("3_e8sey")
+font_size = 8
+font_color = Color(0.113281, 0.117188, 0.121094, 1)
+shadow_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iciid"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -91,9 +97,9 @@ text = "Clean DISK"
 label_settings = SubResource("LabelSettings_35cjq")
 
 [node name="TempFilesButton" type="Panel" parent="."]
-offset_left = 8.0
+offset_left = 16.0
 offset_top = 20.0
-offset_right = 132.0
+offset_right = 140.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dk82c")
 
@@ -107,13 +113,13 @@ text = "Remove temp files"
 label_settings = SubResource("LabelSettings_xxmx8")
 
 [node name="Label2" type="Label" parent="TempFilesButton"]
-layout_mode = 0
-offset_left = 132.0
-offset_top = 4.0
-offset_right = 276.0
-offset_bottom = 27.0
-text = "--"
-label_settings = SubResource("LabelSettings_xxmx8")
+offset_left = -8.0
+offset_top = 16.0
+offset_right = 136.0
+offset_bottom = 39.0
+text = "Easy - 10.79 MB or +"
+label_settings = SubResource("LabelSettings_ura6v")
+horizontal_alignment = 1
 
 [node name="Border" type="Panel" parent="TempFilesButton"]
 layout_mode = 0

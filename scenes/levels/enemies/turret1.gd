@@ -7,7 +7,7 @@ extends StaticBody2D
 var _shooting = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if animation.frame != 1 or _shooting: return
+	if !animation or animation.frame != 1 or _shooting: return
 	_shoot()
 
 func _shoot():

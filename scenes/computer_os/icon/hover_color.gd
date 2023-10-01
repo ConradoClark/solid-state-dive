@@ -3,6 +3,7 @@ extends Node2D
 @export var hoverColor: Color
 @export var panel: Panel
 @export var hoverRegion: Area2D
+@export var clickable: Clickable
 
 var _styleBox: StyleBoxFlat
 var _originalColor: Color
@@ -20,6 +21,7 @@ func _setup_stylebox():
 	panel.add_theme_stylebox_override("panel", _styleBox)
 	
 func _on_mouse_entered():
+	if clickable and clickable.preventClick: return
 	_isMouseOver = true
 	_styleBox.bg_color = hoverColor
 

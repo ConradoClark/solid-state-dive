@@ -1,0 +1,342 @@
+[gd_scene load_steps=18 format=3 uid="uid://d1d77xj4fcmc0"]
+
+[ext_resource type="Script" path="res://scenes/computer_os/window/os_window.gd" id="1_wa58w"]
+[ext_resource type="Texture2D" uid="uid://c2qdxlq1lvsyd" path="res://sprites/computer_os/window/close_window_icon.png" id="2_6y7jr"]
+[ext_resource type="Script" path="res://scenes/computer_os/clickable.gd" id="3_jxt86"]
+[ext_resource type="Script" path="res://scenes/computer_os/window/close_win_on_click.gd" id="4_ghavu"]
+[ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="5_gny4b"]
+[ext_resource type="Script" path="res://scenes/computer_os/icon/hover_color.gd" id="6_fwioq"]
+[ext_resource type="Script" path="res://scenes/computer_os/buttons/allow_click_if_space.gd" id="7_xjlxc"]
+[ext_resource type="Script" path="res://scenes/computer_os/buttons/install_app.gd" id="8_pb4wp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hejte"]
+bg_color = Color(0.756863, 0.729412, 0.717647, 1)
+border_width_bottom = 2
+border_color = Color(0.113725, 0.117647, 0.121569, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lt00n"]
+size = Vector2(16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_35cjq"]
+font = ExtResource("5_gny4b")
+font_size = 8
+font_color = Color(0.113281, 0.117188, 0.121094, 1)
+outline_size = 3
+shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk82c"]
+bg_color = Color(0.859375, 0.84375, 0.800781, 1)
+border_width_bottom = 2
+border_color = Color(0.75, 0.722656, 0.710938, 1)
+shadow_color = Color(0.992188, 0.992188, 0.992188, 1)
+shadow_offset = Vector2(0, -1)
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_xxmx8"]
+font = ExtResource("5_gny4b")
+font_size = 8
+font_color = Color(0.113281, 0.117188, 0.121094, 1)
+outline_size = 3
+shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o5xh6"]
+font = ExtResource("5_gny4b")
+font_size = 8
+font_color = Color(0.996094, 0.996094, 0.996094, 1)
+shadow_size = 0
+shadow_color = Color(1, 1, 1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_510eq"]
+line_spacing = 1.0
+font = ExtResource("5_gny4b")
+font_size = 8
+font_color = Color(0.960784, 0.996078, 0.996078, 1)
+outline_size = 1
+outline_color = Color(0.113281, 0.117188, 0.121094, 1)
+shadow_size = 2
+shadow_color = Color(0.113281, 0.117188, 0.121094, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iciid"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.996094, 0.996094, 0.996094, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykt7e"]
+size = Vector2(124, 20)
+
+[node name="Window" type="Node2D"]
+z_index = -1
+script = ExtResource("1_wa58w")
+window_size = null
+
+[node name="Rect" type="ColorRect" parent="."]
+offset_right = 160.0
+offset_bottom = 140.0
+color = Color(0.752941, 0.678431, 0.8, 1)
+
+[node name="TopBar" type="Panel" parent="."]
+offset_right = 160.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hejte")
+
+[node name="CloseWindowIcon" type="Sprite2D" parent="TopBar"]
+position = Vector2(152, 8)
+texture = ExtResource("2_6y7jr")
+
+[node name="Clickable" type="Node" parent="TopBar/CloseWindowIcon" node_paths=PackedStringArray("clickRegion")]
+script = ExtResource("3_jxt86")
+clickRegion = NodePath("../Area2D")
+
+[node name="CloseOnClick" type="Node2D" parent="TopBar/CloseWindowIcon" node_paths=PackedStringArray("clickable", "window")]
+script = ExtResource("4_ghavu")
+clickable = NodePath("../Clickable")
+window = NodePath("../../..")
+
+[node name="Area2D" type="Area2D" parent="TopBar/CloseWindowIcon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBar/CloseWindowIcon/Area2D"]
+shape = SubResource("RectangleShape2D_lt00n")
+
+[node name="WindowTitle" type="Label" parent="TopBar"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 148.0
+offset_bottom = 25.0
+text = "install apps"
+label_settings = SubResource("LabelSettings_35cjq")
+
+[node name="InstallBombs" type="Panel" parent="."]
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 132.0
+offset_bottom = 44.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dk82c")
+
+[node name="Label" type="Label" parent="InstallBombs"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 120.0
+offset_bottom = 27.0
+text = "malware remover"
+label_settings = SubResource("LabelSettings_xxmx8")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="InstallBombs"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 34.0
+text = "it is the bomb!"
+label_settings = SubResource("LabelSettings_o5xh6")
+horizontal_alignment = 1
+
+[node name="Size" type="Label" parent="InstallBombs"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = -4.0
+offset_right = 144.0
+offset_bottom = 24.0
+text = "20
+mb"
+label_settings = SubResource("LabelSettings_510eq")
+vertical_alignment = 1
+
+[node name="Border" type="Panel" parent="InstallBombs"]
+layout_mode = 0
+offset_right = 124.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iciid")
+
+[node name="Disabler" type="ColorRect" parent="InstallBombs"]
+layout_mode = 0
+offset_right = 124.0
+offset_bottom = 20.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Hover" type="Node2D" parent="InstallBombs" node_paths=PackedStringArray("panel", "hoverRegion", "clickable")]
+script = ExtResource("6_fwioq")
+hoverColor = Color(0.87451, 0.729412, 0.717647, 1)
+panel = NodePath("..")
+hoverRegion = NodePath("../Area2D")
+clickable = NodePath("../Clickable")
+
+[node name="Area2D" type="Area2D" parent="InstallBombs"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InstallBombs/Area2D"]
+position = Vector2(62, 10)
+shape = SubResource("RectangleShape2D_ykt7e")
+
+[node name="Clickable" type="Node" parent="InstallBombs" node_paths=PackedStringArray("clickRegion")]
+script = ExtResource("3_jxt86")
+clickRegion = NodePath("../Area2D")
+preventClick = true
+
+[node name="AllowClickIfSpace" type="Node" parent="InstallBombs" node_paths=PackedStringArray("disabler", "clickable", "cost")]
+script = ExtResource("7_xjlxc")
+requiredSpace = 20.0
+tag = "bombs"
+disabler = NodePath("../Disabler")
+clickable = NodePath("../Clickable")
+cost = NodePath("../Size")
+gottenColor = Color(0.698039, 0.811765, 0.513726, 1)
+
+[node name="InstallApp" type="Node" parent="InstallBombs" node_paths=PackedStringArray("clickBehavior", "clickable")]
+script = ExtResource("8_pb4wp")
+tag = "bombs"
+clickBehavior = NodePath("../AllowClickIfSpace")
+clickable = NodePath("../Clickable")
+
+[node name="InstallDash" type="Panel" parent="."]
+offset_left = 8.0
+offset_top = 64.0
+offset_right = 132.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dk82c")
+
+[node name="Label" type="Label" parent="InstallDash"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 120.0
+offset_bottom = 27.0
+text = "memory saver"
+label_settings = SubResource("LabelSettings_xxmx8")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="InstallDash"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 34.0
+text = "faster & stronger"
+label_settings = SubResource("LabelSettings_o5xh6")
+horizontal_alignment = 1
+
+[node name="Border" type="Panel" parent="InstallDash"]
+layout_mode = 0
+offset_right = 124.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iciid")
+
+[node name="Hover" type="Node2D" parent="InstallDash" node_paths=PackedStringArray("panel", "hoverRegion", "clickable")]
+script = ExtResource("6_fwioq")
+hoverColor = Color(0.87451, 0.729412, 0.717647, 1)
+panel = NodePath("..")
+hoverRegion = NodePath("../Area2D")
+clickable = NodePath("../Clickable")
+
+[node name="Area2D" type="Area2D" parent="InstallDash"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InstallDash/Area2D"]
+position = Vector2(62, 10)
+shape = SubResource("RectangleShape2D_ykt7e")
+
+[node name="Clickable" type="Node" parent="InstallDash" node_paths=PackedStringArray("clickRegion")]
+script = ExtResource("3_jxt86")
+clickRegion = NodePath("../Area2D")
+preventClick = true
+
+[node name="Disabler" type="ColorRect" parent="InstallDash"]
+offset_right = 124.0
+offset_bottom = 20.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="AllowClickIfSpace" type="Node" parent="InstallDash" node_paths=PackedStringArray("disabler", "clickable", "cost")]
+script = ExtResource("7_xjlxc")
+requiredSpace = 50.0
+tag = "dash"
+disabler = NodePath("../Disabler")
+clickable = NodePath("../Clickable")
+cost = NodePath("../Size")
+gottenColor = Color(0.698039, 0.811765, 0.513726, 1)
+
+[node name="Size" type="Label" parent="InstallDash"]
+offset_left = 128.0
+offset_top = -4.0
+offset_right = 144.0
+offset_bottom = 24.0
+text = "50
+mb"
+label_settings = SubResource("LabelSettings_510eq")
+vertical_alignment = 1
+
+[node name="InstallBolder" type="Panel" parent="."]
+offset_left = 8.0
+offset_top = 104.0
+offset_right = 132.0
+offset_bottom = 124.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dk82c")
+
+[node name="Label" type="Label" parent="InstallBolder"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 120.0
+offset_bottom = 27.0
+text = "bolder's door 3"
+label_settings = SubResource("LabelSettings_xxmx8")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="InstallBolder"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 34.0
+text = "everyone's playin"
+label_settings = SubResource("LabelSettings_o5xh6")
+horizontal_alignment = 1
+
+[node name="Border" type="Panel" parent="InstallBolder"]
+layout_mode = 0
+offset_right = 124.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iciid")
+
+[node name="Hover" type="Node2D" parent="InstallBolder" node_paths=PackedStringArray("panel", "hoverRegion", "clickable")]
+script = ExtResource("6_fwioq")
+hoverColor = Color(0.87451, 0.729412, 0.717647, 1)
+panel = NodePath("..")
+hoverRegion = NodePath("../Area2D")
+clickable = NodePath("../Clickable")
+
+[node name="Area2D" type="Area2D" parent="InstallBolder"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InstallBolder/Area2D"]
+position = Vector2(62, 10)
+shape = SubResource("RectangleShape2D_ykt7e")
+
+[node name="Clickable" type="Node" parent="InstallBolder" node_paths=PackedStringArray("clickRegion")]
+script = ExtResource("3_jxt86")
+clickRegion = NodePath("../Area2D")
+preventClick = true
+
+[node name="Disabler" type="ColorRect" parent="InstallBolder"]
+offset_right = 124.0
+offset_bottom = 20.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="AllowClickIfSpace" type="Node" parent="InstallBolder" node_paths=PackedStringArray("disabler", "clickable", "cost")]
+script = ExtResource("7_xjlxc")
+requiredSpace = 150.0
+tag = "bolder"
+disabler = NodePath("../Disabler")
+clickable = NodePath("../Clickable")
+cost = NodePath("../Size")
+gottenColor = Color(0.698039, 0.811765, 0.513726, 1)
+
+[node name="Size" type="Label" parent="InstallBolder"]
+offset_left = 128.0
+offset_top = -4.0
+offset_right = 148.0
+offset_bottom = 24.0
+text = "150
+mb"
+label_settings = SubResource("LabelSettings_510eq")
+vertical_alignment = 1

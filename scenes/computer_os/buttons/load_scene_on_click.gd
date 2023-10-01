@@ -9,4 +9,4 @@ func _ready():
 
 func _load_scene():
 	Globals.changeScene(get_tree(), sceneToLoad)
-	window.opener.close_window()
+	if window: window.opener.close_window()

@@ -4,6 +4,7 @@ class_name Clickable
 
 signal on_click
 @export var clickRegion: Area2D
+@export var preventClick: bool
 var _isMouseOver = false
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +13,7 @@ func _ready():
 	clickRegion.mouse_exited.connect(_on_mouse_exited)
 
 func _input(event):
-	if !event.is_action_released("click") or !_isMouseOver: return
+	if preventClick or !event.is_action_released("click") or !_isMouseOver: return
 	on_click.emit()
 
 func _on_mouse_entered():

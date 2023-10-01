@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d3myar4wu1e7i"]
+[gd_scene load_steps=34 format=3 uid="uid://d3myar4wu1e7i"]
 
 [ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_be1hv"]
 [ext_resource type="Texture2D" uid="uid://p5e40m3soh7a" path="res://sprites/computer_os/start_button.png" id="1_l82vu"]
@@ -14,11 +14,14 @@
 [ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="5_hkv4r"]
 [ext_resource type="Script" path="res://scenes/computer_os/icon/open_window.gd" id="6_onwi2"]
 [ext_resource type="PackedScene" uid="uid://t6pdxvi4vjek" path="res://scenes/computer_os/window/clean_drive_window.tscn" id="8_84pjt"]
+[ext_resource type="PackedScene" uid="uid://d1d77xj4fcmc0" path="res://scenes/computer_os/window/install_apps_window.tscn" id="12_fja7r"]
 [ext_resource type="Texture2D" uid="uid://blgntrlpv538h" path="res://sprites/computer_os/help_icon.png" id="14_hrtam"]
 [ext_resource type="PackedScene" uid="uid://pmns6w1smn1t" path="res://scenes/characters/player/player.tscn" id="14_j6cmt"]
 [ext_resource type="Script" path="res://scenes/computer_os/icon/hover_sprite.gd" id="15_d5f0h"]
 [ext_resource type="Script" path="res://scenes/computer_os/icon/show_help_on_hover.gd" id="16_pydxt"]
+[ext_resource type="Script" path="res://scenes/computer_os/free_space_label.gd" id="16_s111v"]
 [ext_resource type="PackedScene" uid="uid://cqs2lri1kagqp" path="res://scenes/computer_os/window/open_win_effect.tscn" id="17_riojm"]
+[ext_resource type="PackedScene" uid="uid://b4gwnjolf55or" path="res://scenes/effects/transition_pixelate.tscn" id="20_w2wv4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bgixu"]
 line_spacing = -2.0
@@ -38,6 +41,17 @@ size = Vector2(52, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8di0w"]
 size = Vector2(320, 24)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0df4f"]
+line_spacing = -2.0
+font = ExtResource("5_hkv4r")
+font_size = 8
+font_color = Color(0.698039, 0.811765, 0.513726, 1)
+outline_size = 2
+outline_color = Color(0.113281, 0.117188, 0.121094, 1)
+shadow_size = 2
+shadow_color = Color(0.113281, 0.117188, 0.121094, 1)
+shadow_offset = Vector2(0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rjc7i"]
 line_spacing = -2.0
@@ -228,6 +242,7 @@ script = ExtResource("6_onwi2")
 eventSource = NodePath("../DoubleClick/DoubleClickable")
 eventName = "on_dbl_click"
 openWindowEffect = ExtResource("17_riojm")
+window = ExtResource("12_fja7r")
 winOrigin = Vector2(30, 94)
 winDestination = Vector2(155, 100)
 
@@ -320,9 +335,30 @@ offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Goal: install bolder's door 3"
+label_settings = SubResource("LabelSettings_0df4f")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="FreeSpace" type="Label" parent="Desktop"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 12.0
+offset_right = 252.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Space Left"
 label_settings = SubResource("LabelSettings_rjc7i")
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="Node" type="Node" parent="Desktop/FreeSpace" node_paths=PackedStringArray("label")]
+script = ExtResource("16_s111v")
+label = NodePath("..")
+danger = Color(0.945098, 0.364706, 0.364706, 1)
+normal = Color(0.113281, 0.117188, 0.121094, 1)
 
 [node name="OSInfo" type="Label" parent="Desktop"]
 anchors_preset = 15
@@ -455,3 +491,6 @@ vertical_alignment = 1
 
 [node name="Player" parent="Desktop" instance=ExtResource("14_j6cmt")]
 position = Vector2(104, 192)
+
+[node name="Transition" parent="." instance=ExtResource("20_w2wv4")]
+animateAtStart = true

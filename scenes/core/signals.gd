@@ -11,3 +11,5 @@ signal on_global_death(object)
 signal on_player_respawn
 
 signal on_checkpoint(check)
+signal on_scene_change()
+signal total_saved_changed()
