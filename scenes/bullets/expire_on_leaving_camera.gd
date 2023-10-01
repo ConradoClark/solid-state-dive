@@ -7,7 +7,7 @@ func _ready():
 	camera = get_viewport().get_camera_2d()
 
 func _process(delay):
-	if !_is_in_camera_bounds(): body.queue_free()
+	if !camera or !_is_in_camera_bounds(): body.queue_free()
 	
 func _is_in_camera_bounds():
 	return (body.position.x > camera.limit_left and 

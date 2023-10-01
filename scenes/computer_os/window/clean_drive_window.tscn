@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://t6pdxvi4vjek"]
+[gd_scene load_steps=15 format=3 uid="uid://t6pdxvi4vjek"]
 
 [ext_resource type="Script" path="res://scenes/computer_os/window/os_window.gd" id="1_k4gm7"]
 [ext_resource type="Texture2D" uid="uid://c2qdxlq1lvsyd" path="res://sprites/computer_os/window/close_window_icon.png" id="2_k7ces"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scenes/computer_os/clickable.gd" id="3_wcijs"]
 [ext_resource type="Script" path="res://scenes/computer_os/icon/hover_color.gd" id="6_fxqs2"]
 [ext_resource type="Script" path="res://scenes/computer_os/buttons/load_scene_on_click.gd" id="7_uwbtn"]
-[ext_resource type="PackedScene" uid="uid://btwififiw4u85" path="res://scenes/levels/level_1_temp_files.tscn" id="8_owmlr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hejte"]
 bg_color = Color(0.756863, 0.729412, 0.717647, 1)
@@ -142,5 +141,5 @@ clickRegion = NodePath("../Area2D")
 position = Vector2(-8, -20)
 script = ExtResource("7_uwbtn")
 clickable = NodePath("../Clickable")
-sceneToLoad = ExtResource("8_owmlr")
+sceneToLoad = "res://scenes/levels/level_1_temp_files.tscn"
 window = NodePath("../..")

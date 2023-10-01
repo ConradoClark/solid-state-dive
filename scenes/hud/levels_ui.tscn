@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://gickj154nekb"]
+
+[ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="1_68q03"]
+[ext_resource type="Script" path="res://scenes/hud/data_object_counter.gd" id="2_pnjcb"]
+[ext_resource type="Texture2D" uid="uid://q0p4w0k4kg1i" path="res://sprites/hud/life_counter.png" id="3_sx0mq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5wahr"]
+font = ExtResource("1_68q03")
+font_size = 8
+font_color = Color(0.941176, 0.94902, 0.913725, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tjt2p"]
+font = ExtResource("1_68q03")
+font_size = 8
+font_color = Color(0.87451, 0.729412, 0.717647, 1)
+
+[node name="levels_ui" type="CanvasLayer"]
+
+[node name="TopBar" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 20.0
+color = Color(0.258824, 0.196078, 0.301961, 0.784314)
+
+[node name="Label" type="Label" parent="TopBar"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 119.0
+offset_bottom = 27.0
+text = "delete everything !"
+label_settings = SubResource("LabelSettings_5wahr")
+
+[node name="Percent" type="Label" parent="TopBar"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 4.0
+offset_right = 252.0
+offset_bottom = 27.0
+text = "0 / 100 data"
+label_settings = SubResource("LabelSettings_5wahr")
+horizontal_alignment = 2
+
+[node name="DataObjectCounter" type="Node" parent="TopBar" node_paths=PackedStringArray("label")]
+script = ExtResource("2_pnjcb")
+label = NodePath("../Percent")
+
+[node name="Stats" type="ColorRect" parent="."]
+offset_top = 20.0
+offset_right = 256.0
+offset_bottom = 36.0
+color = Color(0.184314, 0.152941, 0.160784, 0.705882)
+
+[node name="Label" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 128.0
+offset_bottom = 25.0
+text = "life"
+label_settings = SubResource("LabelSettings_tjt2p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Stats"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(56, 10)
+texture = ExtResource("3_sx0mq")
+region_enabled = true
+region_rect = Rect2(0, 0, 42, 16)

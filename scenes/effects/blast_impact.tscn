@@ -99,7 +99,7 @@ animations = [{
 [node name="BlastImpact" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_dqr3q")
 autoplay = "default"
-frame_progress = 0.0223354
+frame_progress = 0.765543
 speed_scale = 5.0
 script = ExtResource("1_g8g2r")
 

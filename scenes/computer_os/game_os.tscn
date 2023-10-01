@@ -1,8 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://d3myar4wu1e7i"]
+[gd_scene load_steps=30 format=3 uid="uid://d3myar4wu1e7i"]
 
 [ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_be1hv"]
 [ext_resource type="Texture2D" uid="uid://p5e40m3soh7a" path="res://sprites/computer_os/start_button.png" id="1_l82vu"]
 [ext_resource type="Script" path="res://scenes/computer_os/icon/selectable.gd" id="2_4jrvw"]
+[ext_resource type="Script" path="res://scenes/core/enable_player_shoot.gd" id="2_6pt7g"]
+[ext_resource type="Script" path="res://scenes/core/custom_camera.gd" id="3_5f8yc"]
 [ext_resource type="Texture2D" uid="uid://btb1624f5ra4v" path="res://sprites/computer_os/install_apps_icon.png" id="3_5xc21"]
 [ext_resource type="Texture2D" uid="uid://11peciv7jbup" path="res://sprites/computer_os/start_bar.png" id="3_ca5rm"]
 [ext_resource type="Texture2D" uid="uid://cpa2khjy41y8q" path="res://sprites/computer_os/start_bar_right_border.png" id="3_eyntv"]
@@ -93,9 +95,13 @@ shadow_offset = Vector2(0, 1)
 [node name="Root" type="Node2D"]
 texture_filter = 1
 
-[node name="Gravity" type="Node" parent="."]
-unique_name_in_owner = true
+[node name="Behaviors" type="Node2D" parent="."]
+
+[node name="Gravity" type="Node" parent="Behaviors"]
 script = ExtResource("1_be1hv")
+
+[node name="DisablePlayerShoot" type="Node2D" parent="Behaviors"]
+script = ExtResource("2_6pt7g")
 
 [node name="BG" type="ColorRect" parent="."]
 z_index = -10
@@ -106,6 +112,7 @@ color = Color(0.9375, 0.945313, 0.910156, 1)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(128, 112)
 process_callback = 0
+script = ExtResource("3_5f8yc")
 
 [node name="Desktop" type="Node2D" parent="."]
 

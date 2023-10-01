@@ -16,6 +16,7 @@ func _process(delta):
 
 func _instantiateProjectile():
 	var projectile = Globals.playerWeapon.projectile.instantiate() as Projectile
+	Globals.sceneExclusives.push_back(projectile)
 	projectile.direction = guideArm.currentDirection
 	get_tree().root.add_child(projectile)
 	projectile.global_position = (playerBody.global_position + projectile.direction*5

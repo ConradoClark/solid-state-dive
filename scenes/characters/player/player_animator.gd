@@ -67,6 +67,5 @@ func _fall_state():
 	
 func _process(delta):
 	if _moving:
-		# print(sign(playerMove.lastDirection))
 		playerSprite.flip_h = true if sign(playerMove.lastDirection) < 0 else false 
 
