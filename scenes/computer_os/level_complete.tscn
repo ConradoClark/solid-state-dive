@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3arjju6qchwh"]
+[gd_scene load_steps=18 format=3 uid="uid://d3arjju6qchwh"]
 
 [ext_resource type="PackedScene" uid="uid://b4gwnjolf55or" path="res://scenes/effects/transition_pixelate.tscn" id="1_bhpg7"]
 [ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="1_vm7ll"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/computer_os/level_complete_message.gd" id="6_y60lh"]
 [ext_resource type="AudioStream" uid="uid://72thksio4ay4" path="res://audio/songs/solidstatedive_fanfare.ogg" id="7_v7gnq"]
 [ext_resource type="PackedScene" uid="uid://c82pcrskl4xym" path="res://scenes/effects/crt_effect.tscn" id="8_p2f0x"]
+[ext_resource type="Script" path="res://scenes/core/full_screen.gd" id="9_i7gau"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6yfj"]
 font = ExtResource("1_vm7ll")
@@ -170,3 +171,6 @@ autoplay = true
 bus = &"Music"
 
 [node name="CRTEffect" parent="." instance=ExtResource("8_p2f0x")]
+
+[node name="ToggleFullScreen" type="Node" parent="."]
+script = ExtResource("9_i7gau")

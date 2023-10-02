@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://d3myar4wu1e7i"]
+[gd_scene load_steps=38 format=3 uid="uid://d3myar4wu1e7i"]
 
 [ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_be1hv"]
 [ext_resource type="Texture2D" uid="uid://p5e40m3soh7a" path="res://sprites/computer_os/start_button.png" id="1_l82vu"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://b4gwnjolf55or" path="res://scenes/effects/transition_pixelate.tscn" id="20_w2wv4"]
 [ext_resource type="AudioStream" uid="uid://cry2h6ngrgwbh" path="res://audio/songs/solidstatedive_mainmenu.ogg" id="23_ql1ks"]
 [ext_resource type="PackedScene" uid="uid://c82pcrskl4xym" path="res://scenes/effects/crt_effect.tscn" id="23_r38c2"]
+[ext_resource type="Script" path="res://scenes/core/full_screen.gd" id="25_u77d6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ex5rx"]
 size = Vector2(16, 16)
@@ -524,3 +525,6 @@ animateAtStart = true
 stream = ExtResource("23_ql1ks")
 autoplay = true
 bus = &"Music"
+
+[node name="ToggleFullScreen" type="Node" parent="."]
+script = ExtResource("25_u77d6")

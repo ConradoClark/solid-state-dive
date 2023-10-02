@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://1a0e4pux85xq"]
+[gd_scene load_steps=28 format=3 uid="uid://1a0e4pux85xq"]
 
 [ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_2pbcb"]
 [ext_resource type="Script" path="res://scenes/core/enable_player_shoot.gd" id="2_2pvul"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://j7svdyfg0cru" path="res://scenes/levels/objects/hole.tscn" id="23_w5tsc"]
 [ext_resource type="PackedScene" uid="uid://ji14ayku88u2" path="res://scenes/levels/objects/checkpoint/checkpoint.tscn" id="24_axdi8"]
 [ext_resource type="PackedScene" uid="uid://ccclufqa41uwt" path="res://scenes/levels/objects/eof/eof.tscn" id="25_4k1tv"]
+[ext_resource type="Script" path="res://scenes/core/full_screen.gd" id="26_a4kp7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g8lp0"]
 shader = ExtResource("9_80yvc")
@@ -884,3 +885,6 @@ autoplay = true
 bus = &"Music"
 
 [node name="CRTEffect" parent="." instance=ExtResource("11_6vjpb")]
+
+[node name="ToggleFullScreen" type="Node" parent="."]
+script = ExtResource("26_a4kp7")

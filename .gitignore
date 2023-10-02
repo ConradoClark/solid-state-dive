@@ -1,2 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
+*.zip
+release/
+release_macos/

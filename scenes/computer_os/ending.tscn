@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnc1r00mgdb8u"]
+[gd_scene load_steps=9 format=3 uid="uid://dnc1r00mgdb8u"]
 
 [ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="1_r12gm"]
 [ext_resource type="PackedScene" uid="uid://b4gwnjolf55or" path="res://scenes/effects/transition_pixelate.tscn" id="2_4tmqq"]
+[ext_resource type="Script" path="res://scenes/core/full_screen.gd" id="4_sn42t"]
 [ext_resource type="AudioStream" uid="uid://72thksio4ay4" path="res://audio/songs/solidstatedive_fanfare.ogg" id="7_cqoy4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6yfj"]
@@ -108,3 +109,6 @@ animateAtStart = true
 stream = ExtResource("7_cqoy4")
 autoplay = true
 bus = &"Music"
+
+[node name="ToggleFullScreen" type="Node" parent="."]
+script = ExtResource("4_sn42t")

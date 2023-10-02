@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d3py0sfyydl0q"]
+[gd_scene load_steps=28 format=3 uid="uid://d3py0sfyydl0q"]
 
 [ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_75kqc"]
 [ext_resource type="Script" path="res://scenes/core/enable_player_shoot.gd" id="2_cqh3f"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://ckkm2wa53ri4n" path="res://scenes/levels/objects/tech_part_1.tscn" id="23_8fpye"]
 [ext_resource type="PackedScene" uid="uid://ccclufqa41uwt" path="res://scenes/levels/objects/eof/eof.tscn" id="24_fq68l"]
 [ext_resource type="PackedScene" uid="uid://c82pcrskl4xym" path="res://scenes/effects/crt_effect.tscn" id="25_87arr"]
+[ext_resource type="Script" path="res://scenes/core/full_screen.gd" id="26_4kkc2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_74431"]
 shader = ExtResource("9_6m1cn")
@@ -802,3 +803,6 @@ triggerTag = "purple2"
 position = Vector2(792, 176)
 
 [node name="CRTEffect" parent="." instance=ExtResource("25_87arr")]
+
+[node name="ToggleFullScreen" type="Node" parent="."]
+script = ExtResource("26_4kkc2")
