@@ -19,10 +19,11 @@ var sceneTweenExclusives = []
 
 var levelName: String = "level1"
 
-var totalSaved = 40. #15.37
+var totalSaved = 15.37
 
 var save = {
-	"level1" : 10.79
+	"level1" : 10.79,
+	"level2" : 25.12
 }
 
 var acquiredApps = {

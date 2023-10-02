@@ -1,0 +1,8 @@
+[gd_resource type="TileSet" load_steps=2 format=3 uid="uid://6gpen3u4kc55"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lvn07"]
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_lvn07")
+physics_layer_1/collision_layer = 1

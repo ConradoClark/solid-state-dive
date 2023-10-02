@@ -16,6 +16,8 @@ func _ready():
 	match Globals.levelName:
 		"level1":
 			text.text = "The files were temporary, just like your motivation."
+		"level2":
+			text.text = "I definitely should've opened an anonymous tab instead."
 		_:
 			text.text = "oops"
 

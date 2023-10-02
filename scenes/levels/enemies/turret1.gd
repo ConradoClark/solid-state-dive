@@ -1,10 +1,14 @@
 extends StaticBody2D
 
-@export var animation: AnimatedSprite2D
 @export var projectileType: PackedScene
 @export var direction: Vector2
 
+var animation: AnimatedSprite2D
 var _shooting = false
+
+func _ready():
+	animation = get_node_or_null("sprite")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if !animation or animation.frame != 1 or _shooting: return

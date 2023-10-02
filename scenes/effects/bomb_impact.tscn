@@ -155,7 +155,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grpoh"]
-size = Vector2(32, 32)
+size = Vector2(24, 24)
 
 [node name="BlastImpact" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_44r1d")

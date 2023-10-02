@@ -1,0 +1,235 @@
+[gd_scene load_steps=38 format=3 uid="uid://cb2juc6w5uwgv"]
+
+[ext_resource type="Shader" uid="uid://dg1w58q22d002" path="res://shaders/blink_shader.tres" id="1_ibjsp"]
+[ext_resource type="Texture2D" uid="uid://cj3t4aekxlby" path="res://sprites/levels/objects/brick2.png" id="2_b5pnt"]
+[ext_resource type="Script" path="res://scenes/effects/tint_flash.gd" id="3_t1nbc"]
+[ext_resource type="Script" path="res://scenes/levels/objects/flash_on_impact.gd" id="4_lkbnj"]
+[ext_resource type="Script" path="res://scenes/levels/objects/damage_on_impact.gd" id="5_fc71j"]
+[ext_resource type="Script" path="res://scenes/levels/damageable.gd" id="6_jb8hd"]
+[ext_resource type="Script" path="res://scenes/levels/objects/spawn_on_death.gd" id="7_4dokc"]
+[ext_resource type="Texture2D" uid="uid://cdqvnj3nvm3nc" path="res://sprites/effects/brick_destroy_23x21.png" id="8_5nn3x"]
+[ext_resource type="Script" path="res://scenes/effects/one_shot_anim.gd" id="9_paeir"]
+[ext_resource type="Script" path="res://scenes/effects/random_rotation.gd" id="10_2t4jo"]
+[ext_resource type="Script" path="res://scenes/levels/objects/shake_screen_on_death.gd" id="11_2nfqn"]
+[ext_resource type="Script" path="res://scenes/levels/objects/count_data_on_death.gd" id="12_pmg57"]
+[ext_resource type="Script" path="res://scenes/levels/objects/destroy_on_death.gd" id="13_rgxla"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sarjk"]
+shader = ExtResource("1_ibjsp")
+shader_parameter/Flash = Color(0, 0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mco4e"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20hsq"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(0, 0, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr8xg"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(23, 0, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiqqv"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(46, 0, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qli5a"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(69, 0, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn065"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(92, 0, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvksw"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(0, 21, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6ycw"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(23, 21, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qgb2"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(46, 21, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txnad"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(69, 21, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2emcs"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(92, 21, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6mgd"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(0, 42, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q10wn"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(23, 42, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh7xa"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(46, 42, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snvm0"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(69, 42, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohukl"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(92, 42, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0o2s"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(0, 63, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myg8a"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(23, 63, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mj3dp"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(46, 63, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4ajc"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(69, 63, 23, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1wjj"]
+atlas = ExtResource("8_5nn3x")
+region = Rect2(92, 63, 23, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3c6vb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20hsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr8xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiqqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qli5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn065")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvksw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6ycw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qgb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txnad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2emcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6mgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q10wn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh7xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snvm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohukl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0o2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myg8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mj3dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4ajc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1wjj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="PackedScene" id="PackedScene_5ga23"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("BrickDestroy", "sprite_frames", "autoplay", "frame_progress", "speed_scale", "script", "AnimatedSprite2D", "RandomRotation", "reference", "Node2D"),
+"node_count": 2,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 6, 0, -1, 5, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 0, 0, 0, 9, 7, -1, 2, 5, 5, 1073741832, 6, 0),
+"variants": [SubResource("SpriteFrames_3c6vb"), "default", 0.672314, 5.0, ExtResource("9_paeir"), ExtResource("10_2t4jo"), NodePath("..")],
+"version": 3
+}
+
+[node name="brick" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sarjk")
+texture = ExtResource("2_b5pnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mco4e")
+
+[node name="TintFlash" type="Node" parent="." node_paths=PackedStringArray("object")]
+script = ExtResource("3_t1nbc")
+object = NodePath("../Sprite2D")
+
+[node name="FlashOnImpact" type="Node2D" parent="." node_paths=PackedStringArray("collisionSource", "effect")]
+script = ExtResource("4_lkbnj")
+collisionSource = NodePath("..")
+flashColor = Color(1, 1, 1, 1)
+seconds = 0.15
+effect = NodePath("../TintFlash")
+
+[node name="DamageOnImpact" type="Node2D" parent="." node_paths=PackedStringArray("collisionSource", "damageable")]
+script = ExtResource("5_fc71j")
+collisionSource = NodePath("..")
+damageable = NodePath("../Damageable")
+
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("6_jb8hd")
+target = NodePath("..")
+health = 6
+
+[node name="SpawnOnDeath" type="Node" parent="." node_paths=PackedStringArray("target", "damageable")]
+script = ExtResource("7_4dokc")
+target = NodePath("..")
+damageable = NodePath("../Damageable")
+effect = SubResource("PackedScene_5ga23")
+
+[node name="ScreenShakeOnDeath" type="Node" parent="." node_paths=PackedStringArray("damageable")]
+script = ExtResource("11_2nfqn")
+damageable = NodePath("../Damageable")
+amount = 0.5
+duration = 0.25
+
+[node name="CountDataOnDeath" type="Node" parent="." node_paths=PackedStringArray("damageable")]
+script = ExtResource("12_pmg57")
+damageable = NodePath("../Damageable")
+amount = 2
+
+[node name="DestroyOnDeath" type="Node" parent="." node_paths=PackedStringArray("target", "damageable")]
+script = ExtResource("13_rgxla")
+target = NodePath("..")
+damageable = NodePath("../Damageable")

@@ -30,7 +30,7 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("1_xoac1")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_14vy6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fpwhy"]
 animations = [{
 "frames": [{
 "duration": 5.0,
@@ -50,18 +50,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghs0p"]
 size = Vector2(16, 12)
 
-[node name="turret1" type="StaticBody2D" node_paths=PackedStringArray("animation")]
+[node name="turret1" type="StaticBody2D"]
 collision_layer = 8
 script = ExtResource("1_par3i")
-animation = NodePath("Sprite2D")
 projectileType = ExtResource("2_2glws")
 direction = Vector2(-1, 0)
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_j8gd8")
-sprite_frames = SubResource("SpriteFrames_14vy6")
+sprite_frames = SubResource("SpriteFrames_fpwhy")
 autoplay = "default"
-frame_progress = 0.251382
 offset = Vector2(0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -70,7 +68,7 @@ shape = SubResource("RectangleShape2D_ghs0p")
 
 [node name="TintFlash" type="Node" parent="." node_paths=PackedStringArray("object")]
 script = ExtResource("15_6t6f8")
-object = NodePath("../Sprite2D")
+object = NodePath("../sprite")
 
 [node name="FlashOnImpact" type="Node2D" parent="." node_paths=PackedStringArray("collisionSource", "effect")]
 script = ExtResource("16_lpax4")
