@@ -13,3 +13,4 @@ signal on_player_respawn
 signal on_checkpoint(check)
 signal on_scene_change()
 signal total_saved_changed()
+signal on_app_install(app)

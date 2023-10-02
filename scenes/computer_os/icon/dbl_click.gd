@@ -3,6 +3,7 @@ extends Node
 signal on_dbl_click
 @export var clickRegion: Area2D
 @export var maxDelayInSeconds: float = 0.5
+@export var selectable: Selectable
 
 var _isMouseOver = false
 var _dblClicked = false
@@ -14,6 +15,9 @@ func _ready():
 	clickRegion.mouse_exited.connect(_on_mouse_exited)
 
 func _input(event):
+	if selectable and selectable._isSelected and event.is_action("confirm"):
+		on_dbl_click.emit()
+		return
 	if !event.is_action_released("click"): return
 	if !_isMouseOver: return
 	if _clickTimer and _clickTimer.time_left>0 and !_dblClicked:

@@ -1,0 +1,67 @@
+[gd_scene load_steps=14 format=3 uid="uid://bddo4v21ttvwg"]
+
+[ext_resource type="Script" path="res://scenes/bullets/projectile.gd" id="1_q4jxr"]
+[ext_resource type="PackedScene" uid="uid://1ecl6t15owk6" path="res://scenes/effects/bomb_impact.tscn" id="2_1xcur"]
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="3_opkpe"]
+[ext_resource type="Texture2D" uid="uid://be6e1hkuxqe7g" path="res://sprites/characters/bomb_gun.png" id="4_jlcyf"]
+[ext_resource type="Script" path="res://scenes/bullets/linear_movement.gd" id="5_ldj12"]
+[ext_resource type="Script" path="res://scenes/bullets/expire_on_leaving_camera.gd" id="6_7bpu3"]
+[ext_resource type="Script" path="res://scenes/characters/physics_handler.gd" id="7_53o15"]
+[ext_resource type="Script" path="res://scenes/bullets/effect_on_impact.gd" id="8_u0l74"]
+[ext_resource type="Script" path="res://scenes/bullets/signal_on_impact.gd" id="9_x32qj"]
+[ext_resource type="Script" path="res://scenes/characters/gravity_handler.gd" id="10_m63yl"]
+[ext_resource type="AudioStream" uid="uid://xgfi4k1h4i7x" path="res://audio/sfx/bomb_blaster.ogg" id="11_xqobo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tsvpl"]
+shader = ExtResource("3_opkpe")
+shader_parameter/line_color = Color(0.698039, 0.811765, 0.513726, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6pv7"]
+size = Vector2(6, 5)
+
+[node name="BombBlaster" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_q4jxr")
+speed = 200.0
+impactEffect = ExtResource("2_1xcur")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tsvpl")
+texture = ExtResource("4_jlcyf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_i6pv7")
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("projectile")]
+script = ExtResource("5_ldj12")
+projectile = NodePath("..")
+
+[node name="ExpireOnLeaving" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("6_7bpu3")
+body = NodePath("..")
+
+[node name="PhysicsHandler" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("7_53o15")
+body = NodePath("..")
+moveAndCollide = true
+
+[node name="GravityHandler" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("10_m63yl")
+body = NodePath("..")
+
+[node name="EffectOnImpact" type="Node" parent="." node_paths=PackedStringArray("projectile", "physicsHandler")]
+script = ExtResource("8_u0l74")
+projectile = NodePath("..")
+physicsHandler = NodePath("../PhysicsHandler")
+
+[node name="SignalOnImpact" type="Node" parent="." node_paths=PackedStringArray("projectile", "physicsHandler")]
+script = ExtResource("9_x32qj")
+projectile = NodePath("..")
+physicsHandler = NodePath("../PhysicsHandler")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_xqobo")
+autoplay = true

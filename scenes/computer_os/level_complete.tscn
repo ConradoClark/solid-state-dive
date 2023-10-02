@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3arjju6qchwh"]
+[gd_scene load_steps=16 format=3 uid="uid://d3arjju6qchwh"]
 
 [ext_resource type="PackedScene" uid="uid://b4gwnjolf55or" path="res://scenes/effects/transition_pixelate.tscn" id="1_bhpg7"]
 [ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="1_vm7ll"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/computer_os/clickable.gd" id="4_rlj2l"]
 [ext_resource type="Script" path="res://scenes/computer_os/buttons/load_scene_on_click.gd" id="5_8xkcf"]
 [ext_resource type="Script" path="res://scenes/computer_os/level_complete_message.gd" id="6_y60lh"]
+[ext_resource type="AudioStream" uid="uid://72thksio4ay4" path="res://audio/songs/solidstatedive_fanfare.ogg" id="7_v7gnq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6yfj"]
 font = ExtResource("1_vm7ll")
@@ -161,3 +162,8 @@ sceneToLoad = "res://scenes/computer_os/game_os.tscn"
 script = ExtResource("6_y60lh")
 saved = NodePath("../SavedAmount")
 text = NodePath("../Text")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_v7gnq")
+autoplay = true
+bus = &"Music"

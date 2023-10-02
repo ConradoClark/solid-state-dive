@@ -18,7 +18,7 @@ var sceneTweenExclusives = []
 
 var levelName: String = "level1"
 
-var totalSaved = 15.37
+var totalSaved = 40. #15.37
 
 var save = {
 	"level1" : 10.79
@@ -30,6 +30,13 @@ var acquiredApps = {
 	"bolder": false
 }
 
+func _ready():
+	Signals.on_app_install.connect(_on_app_install)
+
+func _on_app_install(app):
+	match app:
+		"bombs": playerWeapon = preload("res://scenes/weapons/bomb_blaster.tres") as Weapon
+		
 func changeScene(tree: SceneTree, scene: String):
 	for obj in sceneExclusives:
 		if obj and obj != null: obj.queue_free()

@@ -1,5 +1,7 @@
 extends Node
 
+class_name Selectable
+
 signal on_select
 signal on_deselect
 @export var clickRegion: Area2D

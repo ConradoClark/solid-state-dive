@@ -10,6 +10,9 @@ func _ready():
 	damageable.on_death.connect(_on_death)
 
 func _on_death():
+	call_deferred("_spawn")
+	
+func _spawn():
 	var obj = effect.instantiate() as Node2D
 	Globals.sceneExclusives.push_back(obj)
 	get_tree().root.add_child(obj)

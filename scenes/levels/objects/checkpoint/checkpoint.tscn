@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ji14ayku88u2"]
+[gd_scene load_steps=31 format=3 uid="uid://ji14ayku88u2"]
 
 [ext_resource type="Shader" uid="uid://bjha3lb63msp" path="res://shaders/color_repl.tres" id="1_5kktm"]
 [ext_resource type="Script" path="res://scenes/levels/objects/checkpoint/checkpoint.gd" id="1_7g80o"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://qvbdild771dl" path="res://sprites/effects/blast_impact_22x24.png" id="4_pokec"]
 [ext_resource type="Script" path="res://scenes/effects/one_shot_anim.gd" id="5_8rx4t"]
 [ext_resource type="Script" path="res://scenes/effects/random_rotation.gd" id="6_46olw"]
+[ext_resource type="AudioStream" uid="uid://c5c2otfta8b3v" path="res://audio/sfx/checkpoint.ogg" id="7_5j57t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pnedj"]
 shader = ExtResource("1_5kktm")
@@ -187,3 +188,7 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 shape = SubResource("RectangleShape2D_xw5jo")
+
+[node name="snd" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_5j57t")
+max_distance = 500.0

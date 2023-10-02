@@ -243,6 +243,7 @@ clickRegion = NodePath("../Area2D")
 preventClick = true
 
 [node name="Disabler" type="ColorRect" parent="InstallDash"]
+layout_mode = 0
 offset_right = 124.0
 offset_bottom = 20.0
 color = Color(0, 0, 0, 0.588235)
@@ -257,6 +258,7 @@ cost = NodePath("../Size")
 gottenColor = Color(0.698039, 0.811765, 0.513726, 1)
 
 [node name="Size" type="Label" parent="InstallDash"]
+layout_mode = 0
 offset_left = 128.0
 offset_top = -4.0
 offset_right = 144.0
@@ -318,6 +320,7 @@ clickRegion = NodePath("../Area2D")
 preventClick = true
 
 [node name="Disabler" type="ColorRect" parent="InstallBolder"]
+layout_mode = 0
 offset_right = 124.0
 offset_bottom = 20.0
 color = Color(0, 0, 0, 0.588235)
@@ -332,6 +335,7 @@ cost = NodePath("../Size")
 gottenColor = Color(0.698039, 0.811765, 0.513726, 1)
 
 [node name="Size" type="Label" parent="InstallBolder"]
+layout_mode = 0
 offset_left = 128.0
 offset_top = -4.0
 offset_right = 148.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://diyq7iy5q6g58"]
+[gd_scene load_steps=13 format=3 uid="uid://diyq7iy5q6g58"]
 
 [ext_resource type="Script" path="res://scenes/bullets/projectile.gd" id="1_bl1qx"]
 [ext_resource type="Shader" path="res://shaders/outline.gdshader" id="1_khk7y"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/characters/physics_handler.gd" id="6_l71cm"]
 [ext_resource type="Script" path="res://scenes/bullets/effect_on_impact.gd" id="7_c27gk"]
 [ext_resource type="Script" path="res://scenes/bullets/signal_on_impact.gd" id="9_3dmxi"]
+[ext_resource type="AudioStream" uid="uid://xgl2ooxim0u0" path="res://audio/sfx/default_blaster.ogg" id="10_0xq13"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tsvpl"]
 shader = ExtResource("1_khk7y")
@@ -55,3 +56,7 @@ physicsHandler = NodePath("../PhysicsHandler")
 script = ExtResource("9_3dmxi")
 projectile = NodePath("..")
 physicsHandler = NodePath("../PhysicsHandler")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_0xq13")
+autoplay = true

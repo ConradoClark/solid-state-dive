@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://b64olmcv0mvb0"]
+[gd_scene load_steps=26 format=3 uid="uid://b64olmcv0mvb0"]
 
 [ext_resource type="Texture2D" uid="uid://coaffaute0s8v" path="res://sprites/effects/explosion_62x66.png" id="1_tf044"]
 [ext_resource type="Script" path="res://scenes/effects/one_shot_anim.gd" id="2_b5x1i"]
 [ext_resource type="Script" path="res://scenes/effects/random_rotation.gd" id="3_g21u3"]
+[ext_resource type="AudioStream" uid="uid://bs2unldx5io4b" path="res://audio/sfx/explosion.ogg" id="4_gbpgj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_68m8i"]
 atlas = ExtResource("1_tf044")
@@ -162,3 +163,8 @@ script = ExtResource("2_b5x1i")
 [node name="RandomRotation" type="Node2D" parent="." node_paths=PackedStringArray("reference")]
 script = ExtResource("3_g21u3")
 reference = NodePath("..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_gbpgj")
+volume_db = 4.0
+autoplay = true

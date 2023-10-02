@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bkq5a32y28ij2"]
+[gd_scene load_steps=29 format=3 uid="uid://bkq5a32y28ij2"]
 
 [ext_resource type="Script" path="res://scenes/bullets/projectile.gd" id="1_g46ww"]
 [ext_resource type="Texture2D" uid="uid://qvbdild771dl" path="res://sprites/effects/blast_impact_22x24.png" id="2_gx0ja"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/characters/physics_handler.gd" id="9_pcmk7"]
 [ext_resource type="Script" path="res://scenes/bullets/effect_on_impact.gd" id="10_6n20q"]
 [ext_resource type="Script" path="res://scenes/bullets/signal_on_impact.gd" id="11_o7fel"]
+[ext_resource type="AudioStream" uid="uid://ow4blg2ql4dy" path="res://audio/sfx/enemy_laser.ogg" id="12_susod"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rayc"]
 atlas = ExtResource("2_gx0ja")
@@ -162,3 +163,8 @@ physicsHandler = NodePath("../PhysicsHandler")
 script = ExtResource("11_o7fel")
 projectile = NodePath("..")
 physicsHandler = NodePath("../PhysicsHandler")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_susod")
+autoplay = true
+max_distance = 300.0

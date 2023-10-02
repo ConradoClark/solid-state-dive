@@ -6,9 +6,11 @@ class_name Checkpoint
 @export var effect: PackedScene
 @export var effectOffset: Vector2
 var _isActive = false
+var snd: AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	snd = get_node("snd")
 	material = material.duplicate()
 	get_node('Area2D').body_entered.connect(_on_checkpoint)
 	Signals.on_checkpoint.connect(_on_global_checkpoint)
@@ -24,6 +26,7 @@ func _on_checkpoint(body):
 	Globals.currentCheckpoint = global_position
 	
 func _activate():
+	if snd: snd.play()
 	_isActive = true
 	material['shader_parameter/Target'] = targetColor
 	var obj = effect.instantiate() as Node2D

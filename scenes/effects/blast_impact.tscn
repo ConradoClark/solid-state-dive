@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://byst2iv5egffo"]
+[gd_scene load_steps=18 format=3 uid="uid://byst2iv5egffo"]
 
 [ext_resource type="Script" path="res://scenes/effects/one_shot_anim.gd" id="1_g8g2r"]
 [ext_resource type="Texture2D" uid="uid://qvbdild771dl" path="res://sprites/effects/blast_impact_22x24.png" id="1_jcys8"]
 [ext_resource type="Script" path="res://scenes/effects/random_rotation.gd" id="3_8ckmy"]
+[ext_resource type="AudioStream" uid="uid://f1e1huobfgnx" path="res://audio/sfx/impact.ogg" id="4_hc77a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rayc"]
 atlas = ExtResource("1_jcys8")
@@ -99,10 +100,15 @@ animations = [{
 [node name="BlastImpact" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_dqr3q")
 autoplay = "default"
-frame_progress = 0.765543
+frame_progress = 0.892598
 speed_scale = 5.0
 script = ExtResource("1_g8g2r")
 
 [node name="RandomRotation" type="Node2D" parent="." node_paths=PackedStringArray("reference")]
 script = ExtResource("3_8ckmy")
 reference = NodePath("..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hc77a")
+volume_db = 4.0
+autoplay = true

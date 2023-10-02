@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhfvokgx7bdvv"]
+
+[ext_resource type="Script" path="res://scenes/core/sfx_player.gd" id="1_6bqdj"]
+[ext_resource type="AudioStream" uid="uid://cso1pdd7cqs77" path="res://audio/sfx/jump.ogg" id="1_qs1ij"]
+
+[node name="sfx_player" type="Node"]
+script = ExtResource("1_6bqdj")
+
+[node name="jump_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_qs1ij")
+bus = &"SFX"

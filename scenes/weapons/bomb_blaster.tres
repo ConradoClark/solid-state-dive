@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://ndqmybbbm50a"]
+
+[ext_resource type="PackedScene" uid="uid://bddo4v21ttvwg" path="res://scenes/bullets/bomb_blaster.tscn" id="1_dlvs5"]
+[ext_resource type="Script" path="res://scenes/weapons/weapon.gd" id="2_jy0fa"]
+
+[resource]
+script = ExtResource("2_jy0fa")
+cooldownInMs = 55.0
+projectile = ExtResource("1_dlvs5")
+positionVariance = 5.0

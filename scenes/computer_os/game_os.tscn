@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d3myar4wu1e7i"]
+[gd_scene load_steps=36 format=3 uid="uid://d3myar4wu1e7i"]
 
 [ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_be1hv"]
 [ext_resource type="Texture2D" uid="uid://p5e40m3soh7a" path="res://sprites/computer_os/start_button.png" id="1_l82vu"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://scenes/computer_os/free_space_label.gd" id="16_s111v"]
 [ext_resource type="PackedScene" uid="uid://cqs2lri1kagqp" path="res://scenes/computer_os/window/open_win_effect.tscn" id="17_riojm"]
 [ext_resource type="PackedScene" uid="uid://b4gwnjolf55or" path="res://scenes/effects/transition_pixelate.tscn" id="20_w2wv4"]
+[ext_resource type="AudioStream" uid="uid://cry2h6ngrgwbh" path="res://audio/songs/solidstatedive_mainmenu.ogg" id="23_ql1ks"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bgixu"]
 line_spacing = -2.0
@@ -106,6 +107,9 @@ outline_color = Color(0.113725, 0.117647, 0.121569, 0)
 shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
 shadow_offset = Vector2(0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2skg"]
+size = Vector2(32, 225)
+
 [node name="Root" type="Node2D"]
 texture_filter = 1
 
@@ -160,7 +164,7 @@ shape = SubResource("RectangleShape2D_0k810")
 
 [node name="Selection" type="Node2D" parent="Desktop/Icons/DiskClean"]
 
-[node name="Selectable" type="Node2D" parent="Desktop/Icons/DiskClean/Selection" node_paths=PackedStringArray("clickRegion", "selectionRect")]
+[node name="Selectable" type="Node" parent="Desktop/Icons/DiskClean/Selection" node_paths=PackedStringArray("clickRegion", "selectionRect")]
 script = ExtResource("2_4jrvw")
 clickRegion = NodePath("../../ClickRegion")
 selectionRect = NodePath("../SelectionRect")
@@ -176,9 +180,10 @@ color = Color(1, 1, 1, 0)
 
 [node name="DoubleClick" type="Node2D" parent="Desktop/Icons/DiskClean"]
 
-[node name="DoubleClickable" type="Node2D" parent="Desktop/Icons/DiskClean/DoubleClick" node_paths=PackedStringArray("clickRegion")]
+[node name="DoubleClickable" type="Node2D" parent="Desktop/Icons/DiskClean/DoubleClick" node_paths=PackedStringArray("clickRegion", "selectable")]
 script = ExtResource("5_8e8ys")
 clickRegion = NodePath("../../ClickRegion")
+selectable = NodePath("../../Selection/Selectable")
 
 [node name="OpenWindow" type="Node2D" parent="Desktop/Icons/DiskClean"]
 script = ExtResource("6_onwi2")
@@ -209,7 +214,7 @@ label_settings = SubResource("LabelSettings_bgixu")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Selectable" type="Node2D" parent="Desktop/Icons/InstallApps" node_paths=PackedStringArray("clickRegion", "selectionRect")]
+[node name="Selectable" type="Node" parent="Desktop/Icons/InstallApps" node_paths=PackedStringArray("clickRegion", "selectionRect")]
 script = ExtResource("2_4jrvw")
 clickRegion = NodePath("../ClickRegion")
 selectionRect = NodePath("../SelectionRect")
@@ -232,9 +237,10 @@ color = Color(1, 1, 1, 0)
 [node name="DoubleClick" type="Node2D" parent="Desktop/Icons/InstallApps"]
 position = Vector2(0, -60)
 
-[node name="DoubleClickable" type="Node2D" parent="Desktop/Icons/InstallApps/DoubleClick" node_paths=PackedStringArray("clickRegion")]
+[node name="DoubleClickable" type="Node2D" parent="Desktop/Icons/InstallApps/DoubleClick" node_paths=PackedStringArray("clickRegion", "selectable")]
 script = ExtResource("5_8e8ys")
 clickRegion = NodePath("../../ClickRegion")
+selectable = NodePath("../../Selectable")
 
 [node name="OpenWindow" type="Node2D" parent="Desktop/Icons/InstallApps"]
 position = Vector2(0, -60)
@@ -247,6 +253,7 @@ winOrigin = Vector2(30, 94)
 winDestination = Vector2(155, 100)
 
 [node name="MyDrive" type="Sprite2D" parent="Desktop/Icons"]
+visible = false
 position = Vector2(28, 156)
 texture = ExtResource("4_0uwg8")
 
@@ -266,7 +273,7 @@ label_settings = SubResource("LabelSettings_bgixu")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Selectable" type="Node2D" parent="Desktop/Icons/MyDrive" node_paths=PackedStringArray("clickRegion", "selectionRect")]
+[node name="Selectable" type="Node" parent="Desktop/Icons/MyDrive" node_paths=PackedStringArray("clickRegion", "selectionRect")]
 script = ExtResource("2_4jrvw")
 clickRegion = NodePath("../ClickRegion")
 selectionRect = NodePath("../SelectionRect")
@@ -289,9 +296,10 @@ color = Color(1, 1, 1, 0)
 [node name="DoubleClick" type="Node2D" parent="Desktop/Icons/MyDrive"]
 position = Vector2(0, -60)
 
-[node name="DoubleClickable" type="Node2D" parent="Desktop/Icons/MyDrive/DoubleClick" node_paths=PackedStringArray("clickRegion")]
+[node name="DoubleClickable" type="Node2D" parent="Desktop/Icons/MyDrive/DoubleClick" node_paths=PackedStringArray("clickRegion", "selectable")]
 script = ExtResource("5_8e8ys")
 clickRegion = NodePath("../../ClickRegion")
+selectable = NodePath("../../Selectable")
 
 [node name="OpenWindow" type="Node2D" parent="Desktop/Icons/MyDrive"]
 position = Vector2(0, -60)
@@ -439,7 +447,7 @@ offset_top = 15.0
 offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "or press enter after selecting"
+text = "or press space after selecting"
 label_settings = SubResource("LabelSettings_btpvu")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -484,7 +492,7 @@ offset_top = 15.0
 offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "SPACE OR RIGHT CLICK TO JUMP"
+text = "SPACE OR UP TO JUMP"
 label_settings = SubResource("LabelSettings_btpvu")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -492,5 +500,22 @@ vertical_alignment = 1
 [node name="Player" parent="Desktop" instance=ExtResource("14_j6cmt")]
 position = Vector2(104, 192)
 
+[node name="StartBarCollider" type="StaticBody2D" parent="Desktop"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/StartBarCollider"]
+position = Vector2(-16, 111.5)
+shape = SubResource("RectangleShape2D_d2skg")
+
+[node name="StartBarCollider2" type="StaticBody2D" parent="Desktop"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/StartBarCollider2"]
+position = Vector2(272, 112)
+shape = SubResource("RectangleShape2D_d2skg")
+
 [node name="Transition" parent="." instance=ExtResource("20_w2wv4")]
 animateAtStart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_ql1ks")
+autoplay = true
+bus = &"Music"

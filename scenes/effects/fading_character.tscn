@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ahfkx378qxw"]
+
+[ext_resource type="Shader" uid="uid://dg1w58q22d002" path="res://shaders/blink_shader.tres" id="1_2f4wb"]
+[ext_resource type="Texture2D" uid="uid://b0c6ri6krmbkx" path="res://sprites/characters/main_character.png" id="1_en8tj"]
+[ext_resource type="Script" path="res://scenes/effects/fading_character.gd" id="1_k55xq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfm83"]
+shader = ExtResource("1_2f4wb")
+shader_parameter/Flash = Color(0, 0.203922, 0.356863, 1)
+
+[node name="fading_character" type="Sprite2D"]
+material = SubResource("ShaderMaterial_bfm83")
+texture = ExtResource("1_en8tj")
+hframes = 4
+vframes = 4
+script = ExtResource("1_k55xq")

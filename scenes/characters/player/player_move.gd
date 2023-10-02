@@ -8,6 +8,7 @@ signal on_stop_move
 var _currentMovement: float = 0
 var _previousSpeed: float = 0.
 @export var body: CharacterBody2D
+@export var dash: PlayerDash
 @export var speed: float = 75
 @export var accel: float = 0.25
 @export var friction : float = 0.3
@@ -21,6 +22,7 @@ func _process(delta):
 	if _currentMovement!=0: lastDirection = sign(_currentMovement)
 	
 func _physics_process(delta):
+	if dash and dash.isDashing: return
 	if _currentMovement != 0:
 		if is_zero_approx(body.velocity.x): on_start_move.emit()
 		if (sign(_currentMovement) == sign(body.velocity.x)):

@@ -113,11 +113,12 @@ text = "Remove temp files"
 label_settings = SubResource("LabelSettings_xxmx8")
 
 [node name="Label2" type="Label" parent="TempFilesButton"]
-offset_left = -8.0
+layout_mode = 0
+offset_left = -16.0
 offset_top = 16.0
-offset_right = 136.0
+offset_right = 144.0
 offset_bottom = 39.0
-text = "Easy - 10.79 MB or +"
+text = "TUTORIAL - 10.79 MB or +"
 label_settings = SubResource("LabelSettings_ura6v")
 horizontal_alignment = 1
 
