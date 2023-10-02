@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/solidstatedive_level3.ogg-ed16d302ea95a6e8eda
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

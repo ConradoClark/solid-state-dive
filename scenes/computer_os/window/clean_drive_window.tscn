@@ -201,9 +201,66 @@ shape = SubResource("RectangleShape2D_ykt7e")
 script = ExtResource("3_wcijs")
 clickRegion = NodePath("../Area2D")
 
-[node name="GoToTempFilesLevel" type="Node2D" parent="BrowserHistory" node_paths=PackedStringArray("clickable", "window")]
+[node name="GoToBrowserHistoryLevel" type="Node2D" parent="BrowserHistory" node_paths=PackedStringArray("clickable", "window")]
 position = Vector2(-8, -20)
 script = ExtResource("7_uwbtn")
 clickable = NodePath("../Clickable")
 sceneToLoad = "res://scenes/levels/level_2_browser_history.tscn"
+window = NodePath("../..")
+
+[node name="CleanRegistry" type="Panel" parent="."]
+offset_left = 16.0
+offset_top = 100.0
+offset_right = 140.0
+offset_bottom = 120.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dk82c")
+
+[node name="Label" type="Label" parent="CleanRegistry"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 120.0
+offset_bottom = 27.0
+text = "Clean registry"
+label_settings = SubResource("LabelSettings_xxmx8")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CleanRegistry"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 16.0
+offset_right = 144.0
+offset_bottom = 39.0
+text = "80.46 MB or More"
+label_settings = SubResource("LabelSettings_ura6v")
+horizontal_alignment = 1
+
+[node name="Border" type="Panel" parent="CleanRegistry"]
+layout_mode = 0
+offset_right = 124.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iciid")
+
+[node name="Hover" type="Node2D" parent="CleanRegistry" node_paths=PackedStringArray("panel", "hoverRegion", "clickable")]
+script = ExtResource("6_fxqs2")
+hoverColor = Color(0.87451, 0.729412, 0.717647, 1)
+panel = NodePath("..")
+hoverRegion = NodePath("../Area2D")
+clickable = NodePath("../Clickable")
+
+[node name="Area2D" type="Area2D" parent="CleanRegistry"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CleanRegistry/Area2D"]
+position = Vector2(62, 10)
+shape = SubResource("RectangleShape2D_ykt7e")
+
+[node name="Clickable" type="Node" parent="CleanRegistry" node_paths=PackedStringArray("clickRegion")]
+script = ExtResource("3_wcijs")
+clickRegion = NodePath("../Area2D")
+
+[node name="GoToCleanRegistryLevel" type="Node2D" parent="CleanRegistry" node_paths=PackedStringArray("clickable", "window")]
+position = Vector2(-8, -20)
+script = ExtResource("7_uwbtn")
+clickable = NodePath("../Clickable")
+sceneToLoad = "res://scenes/levels/level_3_clean_registry.tscn"
 window = NodePath("../..")
