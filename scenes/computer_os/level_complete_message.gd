@@ -18,6 +18,8 @@ func _ready():
 			text.text = "The files were temporary, just like your motivation."
 		"level2":
 			text.text = "I definitely should've opened an anonymous tab instead."
+		"level3":
+			text.text = "Unfollowed. Unsubscribed. Unregistered!"
 		_:
 			text.text = "oops"
 
