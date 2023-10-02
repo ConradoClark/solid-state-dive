@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnc1r00mgdb8u"]
+
+[ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="1_r12gm"]
+[ext_resource type="PackedScene" uid="uid://b4gwnjolf55or" path="res://scenes/effects/transition_pixelate.tscn" id="2_4tmqq"]
+[ext_resource type="AudioStream" uid="uid://72thksio4ay4" path="res://audio/songs/solidstatedive_fanfare.ogg" id="7_cqoy4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6yfj"]
+font = ExtResource("1_r12gm")
+font_color = Color(0.113725, 0.117647, 0.121569, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qfj6w"]
+font = ExtResource("1_r12gm")
+font_size = 8
+font_color = Color(0.113281, 0.117188, 0.121094, 1)
+outline_color = Color(0.113281, 0.117188, 0.121094, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8sywa"]
+font = ExtResource("1_r12gm")
+font_size = 8
+font_color = Color(0.113281, 0.117188, 0.121094, 1)
+outline_color = Color(0.113281, 0.117188, 0.121094, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cwxgv"]
+font = ExtResource("1_r12gm")
+font_size = 8
+font_color = Color(0.94902, 0.364706, 0.364706, 1)
+outline_size = 2
+outline_color = Color(0.113281, 0.117188, 0.121094, 1)
+shadow_size = 2
+shadow_color = Color(0.113281, 0.117188, 0.121094, 1)
+shadow_offset = Vector2(0, 1)
+
+[node name="level_complete" type="Node2D"]
+
+[node name="BG" type="ColorRect" parent="."]
+z_index = -10
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0.698039, 0.811765, 0.513726, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_top = 8.0
+offset_right = 256.0
+offset_bottom = 33.0
+text = "You installed"
+label_settings = SubResource("LabelSettings_g6yfj")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_top = 32.0
+offset_right = 256.0
+offset_bottom = 57.0
+text = "Bolder's door 3"
+label_settings = SubResource("LabelSettings_qfj6w")
+horizontal_alignment = 1
+
+[node name="Saved" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 213.0
+offset_bottom = 89.0
+text = "You lost"
+label_settings = SubResource("LabelSettings_8sywa")
+
+[node name="SavedAmount" type="Label" parent="."]
+offset_left = 44.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 89.0
+text = "150 mb"
+label_settings = SubResource("LabelSettings_cwxgv")
+horizontal_alignment = 2
+
+[node name="Saved2" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 80.0
+offset_right = 213.0
+offset_bottom = 105.0
+text = "You will lose"
+label_settings = SubResource("LabelSettings_8sywa")
+
+[node name="SavedAmount2" type="Label" parent="."]
+offset_left = 44.0
+offset_top = 80.0
+offset_right = 192.0
+offset_bottom = 105.0
+text = "time"
+label_settings = SubResource("LabelSettings_cwxgv")
+horizontal_alignment = 2
+
+[node name="Text" type="Label" parent="."]
+offset_left = 44.0
+offset_top = 112.0
+offset_right = 213.0
+offset_bottom = 188.0
+text = "thanks for playing!
+
+and good luck on your rolls!"
+label_settings = SubResource("LabelSettings_8sywa")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Transition" parent="." instance=ExtResource("2_4tmqq")]
+animateAtStart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_cqoy4")
+autoplay = true
+bus = &"Music"

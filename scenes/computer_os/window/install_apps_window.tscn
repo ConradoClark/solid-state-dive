@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d1d77xj4fcmc0"]
+[gd_scene load_steps=19 format=3 uid="uid://d1d77xj4fcmc0"]
 
 [ext_resource type="Script" path="res://scenes/computer_os/window/os_window.gd" id="1_wa58w"]
 [ext_resource type="Texture2D" uid="uid://c2qdxlq1lvsyd" path="res://sprites/computer_os/window/close_window_icon.png" id="2_6y7jr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/computer_os/icon/hover_color.gd" id="6_fwioq"]
 [ext_resource type="Script" path="res://scenes/computer_os/buttons/allow_click_if_space.gd" id="7_xjlxc"]
 [ext_resource type="Script" path="res://scenes/computer_os/buttons/install_app.gd" id="8_pb4wp"]
+[ext_resource type="Script" path="res://scenes/computer_os/buttons/load_scene_on_click.gd" id="9_jp16t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hejte"]
 bg_color = Color(0.756863, 0.729412, 0.717647, 1)
@@ -350,3 +351,10 @@ text = "150
 mb"
 label_settings = SubResource("LabelSettings_510eq")
 vertical_alignment = 1
+
+[node name="GoToTempFilesLevel" type="Node2D" parent="InstallBolder" node_paths=PackedStringArray("clickable", "window")]
+position = Vector2(-8, -20)
+script = ExtResource("9_jp16t")
+clickable = NodePath("../Clickable")
+sceneToLoad = "res://scenes/computer_os/ending.tscn"
+window = NodePath("../..")
