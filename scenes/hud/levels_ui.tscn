@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://gickj154nekb"]
+[gd_scene load_steps=13 format=3 uid="uid://gickj154nekb"]
 
 [ext_resource type="FontFile" uid="uid://cd8aa8857wijn" path="res://fonts/pixel-bit-advanced.ttf" id="1_68q03"]
 [ext_resource type="Script" path="res://scenes/hud/data_object_counter.gd" id="2_pnjcb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scenes/hud/combo_multiplier.gd" id="5_ugbo6"]
 [ext_resource type="Texture2D" uid="uid://cijv10kdia2xh" path="res://sprites/hud/weapon_icons.png" id="6_ovdw6"]
 [ext_resource type="Script" path="res://scenes/hud/update_weapon_img.gd" id="7_gmvf4"]
+[ext_resource type="Texture2D" uid="uid://m6vurav4mwgi" path="res://sprites/hud/change_weapon_key.png" id="8_8mlje"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5wahr"]
 font = ExtResource("1_68q03")
@@ -137,3 +138,7 @@ position = Vector2(184, 8)
 texture = ExtResource("6_ovdw6")
 hframes = 2
 script = ExtResource("7_gmvf4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Stats/Weapon"]
+position = Vector2(204, 8)
+texture = ExtResource("8_8mlje")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://d3myar4wu1e7i"]
+[gd_scene load_steps=37 format=3 uid="uid://d3myar4wu1e7i"]
 
 [ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_be1hv"]
 [ext_resource type="Texture2D" uid="uid://p5e40m3soh7a" path="res://sprites/computer_os/start_button.png" id="1_l82vu"]
@@ -23,6 +23,40 @@
 [ext_resource type="PackedScene" uid="uid://cqs2lri1kagqp" path="res://scenes/computer_os/window/open_win_effect.tscn" id="17_riojm"]
 [ext_resource type="PackedScene" uid="uid://b4gwnjolf55or" path="res://scenes/effects/transition_pixelate.tscn" id="20_w2wv4"]
 [ext_resource type="AudioStream" uid="uid://cry2h6ngrgwbh" path="res://audio/songs/solidstatedive_mainmenu.ogg" id="23_ql1ks"]
+[ext_resource type="PackedScene" uid="uid://c82pcrskl4xym" path="res://scenes/effects/crt_effect.tscn" id="23_r38c2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ex5rx"]
+size = Vector2(16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g8i6h"]
+line_spacing = -2.0
+font = ExtResource("5_hkv4r")
+font_size = 8
+font_color = Color(0.87451, 0.729412, 0.717647, 1)
+outline_size = 1
+outline_color = Color(0.113725, 0.117647, 0.121569, 0)
+shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_btpvu"]
+line_spacing = -2.0
+font = ExtResource("5_hkv4r")
+font_size = 8
+font_color = Color(0.753906, 0.726563, 0.714844, 1)
+outline_size = 1
+outline_color = Color(0.113725, 0.117647, 0.121569, 0)
+shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b1tgr"]
+line_spacing = -2.0
+font = ExtResource("5_hkv4r")
+font_size = 8
+font_color = Color(0.87451, 0.729412, 0.717647, 1)
+outline_size = 1
+outline_color = Color(0.113725, 0.117647, 0.121569, 0)
+shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
+shadow_offset = Vector2(0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bgixu"]
 line_spacing = -2.0
@@ -74,39 +108,6 @@ outline_color = Color(0.113725, 0.117647, 0.121569, 0)
 shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
 shadow_offset = Vector2(0, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ex5rx"]
-size = Vector2(16, 16)
-
-[sub_resource type="LabelSettings" id="LabelSettings_g8i6h"]
-line_spacing = -2.0
-font = ExtResource("5_hkv4r")
-font_size = 8
-font_color = Color(0.87451, 0.729412, 0.717647, 1)
-outline_size = 1
-outline_color = Color(0.113725, 0.117647, 0.121569, 0)
-shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
-shadow_offset = Vector2(0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_btpvu"]
-line_spacing = -2.0
-font = ExtResource("5_hkv4r")
-font_size = 8
-font_color = Color(0.753906, 0.726563, 0.714844, 1)
-outline_size = 1
-outline_color = Color(0.113725, 0.117647, 0.121569, 0)
-shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
-shadow_offset = Vector2(0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_b1tgr"]
-line_spacing = -2.0
-font = ExtResource("5_hkv4r")
-font_size = 8
-font_color = Color(0.87451, 0.729412, 0.717647, 1)
-outline_size = 1
-outline_color = Color(0.113725, 0.117647, 0.121569, 0)
-shadow_color = Color(0.113725, 0.117647, 0.121569, 0)
-shadow_offset = Vector2(0, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2skg"]
 size = Vector2(32, 225)
 
@@ -133,6 +134,122 @@ process_callback = 0
 script = ExtResource("3_5f8yc")
 
 [node name="Desktop" type="Node2D" parent="."]
+
+[node name="Help Button" type="Node2D" parent="Desktop"]
+position = Vector2(244, 176)
+
+[node name="Area2D" type="Area2D" parent="Desktop/Help Button"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Help Button/Area2D"]
+shape = SubResource("RectangleShape2D_ex5rx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Desktop/Help Button"]
+texture = ExtResource("14_hrtam")
+hframes = 2
+
+[node name="HoverEffect" type="Node2D" parent="Desktop/Help Button" node_paths=PackedStringArray("hoverRegion", "sprite")]
+script = ExtResource("15_d5f0h")
+hoverRegion = NodePath("../Area2D")
+sprite = NodePath("../Sprite2D")
+hoverFrame = 1
+
+[node name="ShowHelpOnHover" type="Node2D" parent="Desktop/Help Button" node_paths=PackedStringArray("hoverSprite", "help1", "help2")]
+script = ExtResource("16_pydxt")
+hoverSprite = NodePath("../HoverEffect")
+help1 = NodePath("../../AccessingApps")
+help2 = NodePath("../../YourCharacter")
+
+[node name="AccessingApps" type="Label" parent="Desktop"]
+z_index = -3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 125.0
+offset_right = 252.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Accessing apps:"
+label_settings = SubResource("LabelSettings_g8i6h")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Tutorial1" type="Label" parent="Desktop/AccessingApps"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -196.0
+offset_top = 3.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Double click on the icons"
+label_settings = SubResource("LabelSettings_btpvu")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Tutorial2" type="Label" parent="Desktop/AccessingApps"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = 15.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "or press space after selecting"
+label_settings = SubResource("LabelSettings_btpvu")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="YourCharacter" type="Label" parent="Desktop"]
+z_index = -3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = 84.0
+offset_right = 252.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The assistant:"
+label_settings = SubResource("LabelSettings_b1tgr")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Tutorial1" type="Label" parent="Desktop/YourCharacter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -196.0
+offset_top = 3.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Move with WASD/ARROWS"
+label_settings = SubResource("LabelSettings_btpvu")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Tutorial2" type="Label" parent="Desktop/YourCharacter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = 15.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SPACE OR UP TO JUMP"
+label_settings = SubResource("LabelSettings_btpvu")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="Icons" type="Node2D" parent="Desktop"]
 
@@ -383,120 +500,6 @@ label_settings = SubResource("LabelSettings_xl320")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Help Button" type="Node2D" parent="Desktop"]
-position = Vector2(244, 176)
-
-[node name="Area2D" type="Area2D" parent="Desktop/Help Button"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Desktop/Help Button/Area2D"]
-shape = SubResource("RectangleShape2D_ex5rx")
-
-[node name="Sprite2D" type="Sprite2D" parent="Desktop/Help Button"]
-texture = ExtResource("14_hrtam")
-hframes = 2
-
-[node name="HoverEffect" type="Node2D" parent="Desktop/Help Button" node_paths=PackedStringArray("hoverRegion", "sprite")]
-script = ExtResource("15_d5f0h")
-hoverRegion = NodePath("../Area2D")
-sprite = NodePath("../Sprite2D")
-hoverFrame = 1
-
-[node name="ShowHelpOnHover" type="Node2D" parent="Desktop/Help Button" node_paths=PackedStringArray("hoverSprite", "help1", "help2")]
-script = ExtResource("16_pydxt")
-hoverSprite = NodePath("../HoverEffect")
-help1 = NodePath("../../AccessingApps")
-help2 = NodePath("../../YourCharacter")
-
-[node name="AccessingApps" type="Label" parent="Desktop"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 52.0
-offset_top = 125.0
-offset_right = 252.0
-offset_bottom = 143.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Accessing apps:"
-label_settings = SubResource("LabelSettings_g8i6h")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Tutorial1" type="Label" parent="Desktop/AccessingApps"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -196.0
-offset_top = 3.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Double click on the icons"
-label_settings = SubResource("LabelSettings_btpvu")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Tutorial2" type="Label" parent="Desktop/AccessingApps"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = 15.0
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "or press space after selecting"
-label_settings = SubResource("LabelSettings_btpvu")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="YourCharacter" type="Label" parent="Desktop"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 52.0
-offset_top = 84.0
-offset_right = 252.0
-offset_bottom = 102.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "The assistant:"
-label_settings = SubResource("LabelSettings_b1tgr")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Tutorial1" type="Label" parent="Desktop/YourCharacter"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -196.0
-offset_top = 3.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Move with WASD/ARROWS"
-label_settings = SubResource("LabelSettings_btpvu")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Tutorial2" type="Label" parent="Desktop/YourCharacter"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = 15.0
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "SPACE OR UP TO JUMP"
-label_settings = SubResource("LabelSettings_btpvu")
-horizontal_alignment = 2
-vertical_alignment = 1
-
 [node name="Player" parent="Desktop" instance=ExtResource("14_j6cmt")]
 position = Vector2(104, 192)
 
@@ -514,6 +517,8 @@ shape = SubResource("RectangleShape2D_d2skg")
 
 [node name="Transition" parent="." instance=ExtResource("20_w2wv4")]
 animateAtStart = true
+
+[node name="CRTEffect" parent="." instance=ExtResource("23_r38c2")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_ql1ks")

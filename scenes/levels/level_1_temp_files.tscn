@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://btwififiw4u85"]
+[gd_scene load_steps=30 format=3 uid="uid://btwififiw4u85"]
 
 [ext_resource type="Script" path="res://scenes/core/gravity.gd" id="1_2onc7"]
 [ext_resource type="Script" path="res://scenes/core/enable_player_shoot.gd" id="2_7oaj8"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://scenes/effects/fade_pixelate.gd" id="22_jqnal"]
 [ext_resource type="Shader" path="res://shaders/pixellate.gdshader" id="22_sdf58"]
 [ext_resource type="AudioStream" uid="uid://dgnyqgfjq0rea" path="res://audio/songs/solidstatedive_level1.ogg" id="25_2x5sa"]
+[ext_resource type="PackedScene" uid="uid://c82pcrskl4xym" path="res://scenes/effects/crt_effect.tscn" id="26_b0vb3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k1qsd"]
 font = ExtResource("7_qlexy")
@@ -718,3 +719,5 @@ offset_bottom = 224.0
 stream = ExtResource("25_2x5sa")
 autoplay = true
 bus = &"Music"
+
+[node name="CRTEffect" parent="." instance=ExtResource("26_b0vb3")]

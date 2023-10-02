@@ -23,7 +23,8 @@ var totalSaved = 15.37
 
 var save = {
 	"level1" : 10.79,
-	"level2" : 25.12
+	"level2" : 25.12,
+	"level3" : 80.46
 }
 
 var acquiredApps = {
