@@ -5,6 +5,7 @@ var gravityEnabled: bool = true
 
 var playerCanShoot: bool = false
 var playerWeapon: Weapon = preload("res://scenes/weapons/default_blaster.tres") as Weapon
+var playerWeaponIndex = 0
 
 var currentCheckpoint: Vector2
 var currentCombo: int
@@ -35,7 +36,9 @@ func _ready():
 
 func _on_app_install(app):
 	match app:
-		"bombs": playerWeapon = preload("res://scenes/weapons/bomb_blaster.tres") as Weapon
+		"bombs": 
+			playerWeapon = preload("res://scenes/weapons/bomb_blaster.tres") as Weapon
+			playerWeaponIndex = 1
 		
 func changeScene(tree: SceneTree, scene: String):
 	for obj in sceneExclusives:

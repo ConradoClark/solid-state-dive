@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://pmns6w1smn1t"]
+[gd_scene load_steps=26 format=3 uid="uid://pmns6w1smn1t"]
 
 [ext_resource type="Script" path="res://scenes/characters/player/player_move.gd" id="1_v503n"]
 [ext_resource type="Script" path="res://scenes/characters/player/player_jump.gd" id="2_72his"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ca70xu6663f84" path="res://sprites/characters/main_arm.png" id="8_tigoj"]
 [ext_resource type="PackedScene" uid="uid://2ahfkx378qxw" path="res://scenes/effects/fading_character.tscn" id="9_hlkdt"]
 [ext_resource type="Script" path="res://scenes/characters/player/player_guide_arm.gd" id="10_gjrer"]
+[ext_resource type="Script" path="res://scenes/characters/player_switch_weapon.gd" id="10_h8me2"]
 [ext_resource type="PackedScene" uid="uid://dhfvokgx7bdvv" path="res://scenes/core/sfx_player.tscn" id="15_rtm32"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgfot"]
@@ -151,6 +152,9 @@ dashSpeed = 200.0
 gravityHandler = NodePath("../../GravityHandler")
 guideArm = NodePath("../GuideArm")
 ghostEffect = ExtResource("9_hlkdt")
+
+[node name="PlayerSwitchWeapon" type="Node" parent="Abilities"]
+script = ExtResource("10_h8me2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rgfot")

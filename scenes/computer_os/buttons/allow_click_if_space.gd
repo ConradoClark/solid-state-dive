@@ -11,6 +11,10 @@ class_name AllowClickIfSpace
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_update()
+	Signals.on_app_install.connect(_on_app_install)
+
+func _on_app_install(app):
+	_update()
 
 func _update():
 	print(Globals.acquiredApps[tag])

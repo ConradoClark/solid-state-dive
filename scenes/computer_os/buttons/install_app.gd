@@ -14,5 +14,4 @@ func _on_click():
 	Signals.on_app_install.emit(tag)
 	Globals.totalSaved -= clickBehavior.requiredSpace
 	Signals.total_saved_changed.emit()
-	clickBehavior._update()
 
